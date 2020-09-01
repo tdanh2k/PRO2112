@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assignment</title>
+
+
+    <link rel="icon" href="images/icons8-windows-xp-52.png" type="image/x-icon">
+    <link href="mycss/logon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-5">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">ĐỔI MẬT KHẨU {{check.username}}</h5>
+                        <form class="form-signin" name="frmLog">
+                            <div class="form-label-group">
+                                <input type="text" id="inputEmail" class="form-control" placeholder="Tài khoản" required autofocus ng-model="check.username" name="txtTaiKhoan" readonly="true">
+                                <label for="inputEmail">Tài khoản</label>
+                                <span ng-show="frmLog.txtTaiKhoan.$invalid" class="text-danger ml-2">
+                                    Vui lòng nhập tài khoản muốn lấy lại mật khẩu
+                                </span>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu cũ" required ng-model="check.password" name="txtMatKhauCu">
+                                <label for="inputPassword">Mật khẩu cũ</label>
+                                <span ng-show="frmLog.txtMatKhauCu.$invalid" class="text-danger ml-2">
+                                    Vui lòng nhập mật khẫu cũ
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword2" class="form-control" placeholder="Mật khẩu cũ" ng-model="student.password" name="txtMatKhauMoi">
+                                <label for="inputPassword2">Mật khẩu mới</label>
+                                <span ng-show="frmLog.txtMatKhauMoi.$invalid" class="text-danger ml-2">
+                                    Vui lòng nhập mật khẩu mới
+                                </span>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" ng-click="doimatkhau();" data-toggle="modal" data-target="#exampleModal1">ĐỔI MẬT KHẨU</button>
+                            <br>
+                            <div class="text-center">
+                                Chưa có tài khoản?<a href="#!dangky"> Đăng ký</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+</script>

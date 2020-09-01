@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assignment</title>
+
+</head>
+
+<body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bolder" id="exampleModalLabel">GÓP Ý</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="MaNV">Tên của bạn</label>
+                                <input type="text" class="form-control" id="MaNV" placeholder="Nguyễn Văn A" />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="Luong">Email của bạn</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="Luong" placeholder="abcxyz@gmail.com" />
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="HoTen">Tiêu đề</label>
+                                <input type="text" class="form-control" id="HoTen" placeholder="Tiêu đề" />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="Clb">Góp ý về:</label>
+                                <select class="form-control" id="Clb" placeholder="Chọn câu lạc bộ">
+                                        <option value="dn">Học tập</option>
+                                        <option value="hagl">Học phí</option>
+                                        <option value="hn">Giáo viên</option>
+                                        <option value="hn">Vấn đề khác</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="GhiChu">Nội Dung</label>
+                                <textarea class="form-control" id="GhiChu" placeholder="Nhập góp ý của bạn" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark"><i class="fas fa-envelope"></i> GỬI</button>
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal"><i class="fas fa-window-close"></i> Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

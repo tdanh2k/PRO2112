@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assignment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+
+    <link rel="icon" href="images/icons8-windows-xp-52.png" type="image/x-icon">
+    <link href="mycss/indexcss.css" rel="stylesheet">
+</head>
+
+<body ng-app="myapp2" ng-controller="myctrl">
+    <button class="btn btn-dark float-right m-lg-6" id="back2Top" title="Go to top">Back to the top</button>
+    <div class="container-fluid">
+        <header ng-include="'pages/header.html'"></header>
+        <nav ng-include="'pages/nav.html'"> </nav>
+        <div class="row" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <article class="col-sm-9 pt-4">
+                <span class="text-warning font-weight-bolder text-xl-center mt-3" style="font-size: 3rem;" ng-hide="name!='Tài khoản'">VUI LÒNG ĐĂNG NHẬP HOẶC ĐĂNG KÝ ĐỂ BẮT ĐẦU HỌC</span>
+                <div class="container-fluid" style="height: 1300px;">
+                    <div ng-view style="height: 900px;"></div>
+                </div>
+            </article>
+            <aside class="col-sm-3 mt-5" ng-include="'pages/aside.html'" ng-hide="name=='Tài khoản'"> </aside>
+        </div>
+        <footer ng-include="'pages/footer.html'"></footer>
+    </div>
+
+    <div ng-include="'pages/gopy.html'"></div>
+    <div ng-include="'pages/statusmatkhau.html'"></div>
+
+    <script src="myjs/scrolljs.js"></script>
+    <script src="myjs/productjs.js"></script>
+    <script src="myjs/page.js"></script>
+</body>
+
+</html>
+<script>
+</script>

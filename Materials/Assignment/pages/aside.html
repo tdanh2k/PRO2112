@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assignment</title>
+
+</head>
+
+<body>
+    <br>
+    <div class="panel-group" id="accordion" style="height: 1100px;">
+        <div class="card text-white bg-dark">
+            <div class="card-header" data-toggle="collapse" href="#collapse1">
+                <span class="fas fa-list"></span>
+                <strong>Danh mục môn học</strong>
+            </div>
+            <div id="collapse1" class="card-collapse collapse list-group">
+                <a href="" class="list-group-item list-group-item-action" ng-repeat="p in products">{{p.Name}} <span class="badge badge-light pull-right"><img src="images/logos/{{p.Logo}}" style="width: 25px; height: 25px;;" /></span></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
