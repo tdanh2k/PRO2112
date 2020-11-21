@@ -1,0 +1,51 @@
+/* width */
+
+ ::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#collapse1 .nav-item:hover .nav-link,
+#collapse1 .nav-item:hover .nav-link.active,
+#collapse2 .nav-item:hover .nav-link,
+#collapse2 .nav-item:hover .nav-link.active,
+#nav-header .nav-link:hover {
+    background: rgb(231, 221, 221);
+    color: black;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+#collapse1 .nav-item .nav-link.active,
+#collapse2 .nav-item .nav-link.active {
+    background-color: rgb(42, 201, 42);
+    color: #ffffff;
+    margin-left: 10%;
+}
+
+#nav-header div {
+    cursor: pointer;
+}
+
+table tbody tr {
+    cursor: pointer;
+}

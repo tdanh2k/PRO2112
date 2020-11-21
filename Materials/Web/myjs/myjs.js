@@ -13,7 +13,14 @@ app.config(function($routeProvider) {
         .when("/contact", {
             templateUrl: "contact.html"
         })
+        .when("/shop", {
+            templateUrl: "shop-grid.html"
+        })
         .otherwise({
             redirectTo: "/home"
         })
+});
+
+$(document).ready(function() {
+    $("#disablediv").children().prop('disabled', true);
 });

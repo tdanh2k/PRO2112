@@ -12,8 +12,22 @@
     cursor: pointer;
     padding: 15px;
     border-radius: 4px;
+    font-weight: bold;
 }
 
 #back2Top:hover {
-    background-color: green;
+    background-color: rgb(42, 201, 42);
+}
+
+#disablediv {
+    cursor: pointer;
+}
+
+#disablediv:hover {
+    background: #6df44b;
+    background: -webkit-linear-gradient(right, #a1e7b9, #5ddf5d, #00de1e, #fc00ff);
+    background: -o-linear-gradient(right, #10c054, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    pointer-events: none;
 }
