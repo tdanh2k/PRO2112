@@ -74,54 +74,55 @@ function resetTables() {
 }
 
 //function ClearAlls
-function clearAllNhaCungCapForm() {
+function clearAllSanPhamForm() {
     clearAllMessage();
-    var validator = $("#frmNhaCungCap").validate();
+    var validator = $("#frmSanPham").validate();
     validator.resetForm();
-    $('#txtTenNhaCC').val('');
-    $('#txtSdtNhaCC').val('');
-    $('#txtEmailNhaCC').val('');
-    $('#txtNgayKiHopDongNhaCC').val('');
-    $('#txtNgayKetThucHopDongNhaCC').val('');
-    $('#txtDiaChiNhaCC').val('');
-    $('#txtGhiChuNhaCC').val('');
+    $('#txtTenSP').val('');
+    $("#cboLoaiSP").val('').prop('selected', true);
+    $("#cboNhaCungCapSP").val('').prop('selected', true);
+    $('#txtQRCodeSP').val('');
+    $('#txtBarCodeSP').val('');
 };
 
 //loadingoverlay functions
-function overlayThemNhaCC() {
-    $("#ThemNhaCC").LoadingOverlay("show", {
+function overlayThemSP() {
+    $("#ThemSP").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemNhaCC").LoadingOverlay("hide");
+            $("#ThemSP").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemNhaCC").LoadingOverlay("progress", count);
+        $("#ThemSP").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangNhaCC() {
-    $("#BangNhaCC").LoadingOverlay("show", {
+function overlayBangSP() {
+    $("#BangSP").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#BangNhaCC").LoadingOverlay("hide");
+            $("#BangSP").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#BangNhaCC").LoadingOverlay("progress", count);
+        $("#BangSP").LoadingOverlay("progress", count);
     }, 300);
 };
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
+    //Icons Selects
+
+
     //Ready functions
     $("#txtEmailNhaCC").inputmask("email");
 
@@ -199,12 +200,9 @@ $(document).ready(function() {
     });
 
     //Datatables functions
-    $("#tblDanhSachNhaCungCap").DataTable({
+    $("#tblDanhSachSanPham").DataTable({
         "responsive": true,
         "autoWidth": false,
-        "fixedHeader": true,
-        "scrollY": "400px",
-        "scrollCollapse": true,
     });
 
     //Toasts
@@ -244,49 +242,39 @@ $(document).ready(function() {
     }, "Số điện thoại phải có 10 số và đúng theo quy định");
 
 
-    $('#frmNhaCungCap').validate({
+    $('#frmSanPham').validate({
         rules: {
-            txtTenNhaCC: {
+            txtTenSP: {
                 required: true,
             },
-            txtSdtNhaCC: {
-                required: true,
-                minlength: 10,
-                CheckSdtNhaCC: true
-            },
-            txtEmailNhaCC: {
+            cboLoaiSP: {
                 required: true
             },
-            txtNgayKiHopDongNhaCC: {
+            cboNhaCungCapSP: {
                 required: true,
             },
-            txtNgayKetThucHopDongNhaCC: {
+            txtQRCodeSP: {
                 required: true
             },
-            txtDiaChiNhaCC: {
+            txtBarCodeSP: {
                 required: true
             }
         },
         messages: {
-            txtTenNhaCC: {
-                required: "Nhập tên nhà cung cấp"
+            txtTenSP: {
+                required: "Nhập tên sản phẩm"
             },
-            txtSdtNhaCC: {
-                required: "Nhập số điện thoại nhà cung cấp",
-                minlength: "Số điện thoại phải 10 số",
-                number: "Số điện thoại chưa đủ số theo quy định"
+            cboLoaiSP: {
+                required: "Chọn loại sản phẩm",
             },
-            txtEmailNhaCC: {
-                required: "Nhập Email nhà cung cấp",
+            cboNhaCungCapSP: {
+                required: "Chọn nhà cung cấp của sản phẩm",
             },
-            txtNgayKiHopDongNhaCC: {
-                required: "Nhập ngày kí hợp đồng nhà cung cấp",
+            txtQRCodeSP: {
+                required: "Chưa có mã QR Code của sản phẩm"
             },
-            txtNgayKetThucHopDongNhaCC: {
-                required: "Nhập ngày kết thúc hợp đồng nhà cung cấp"
-            },
-            txtDiaChiNhaCC: {
-                required: "Nhập địa chỉ nhà cung cấp"
+            txtBarCodeSP: {
+                required: "Chưa có mã Bar Code của sản phẩm"
             }
         },
         errorElement: 'span',
@@ -303,41 +291,40 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhaCungCap >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachSanPham >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
 
     //btn Function Groups
-    $('#btnThemNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
+    $('#btnThemSanPham').on('click', function() {
+        if (!$("#frmSanPham").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÀ CUNG CẤP';
+            var text = 'SẢN PHẨM';
             successInsert(text);
         };
     });
-    $('#btnSuaNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
+    $('#btnSuaSanPham').on('click', function() {
+        if (!$("#frmSanPham").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÀ CUNG CẤP';
+            var text = 'SẢN PHẨM';
             successEdit(text);
         };
     });
-    $('#btnNhapLaiNhaCungCap').on('click', function() {
-
-        clearAllNhaCungCapForm();
+    $('#btnNhapLaiSanPham').on('click', function() {
+        clearAllSanPhamForm();
     });
 
-    $('#btnLamMoiTblNhaCungCap').on('click', function() {
+    $('#btnLamMoiTblSanPham').on('click', function() {
         resetTables();
     });
 
     $(window).on("load", function() {
-        overlayThemNhaCC();
-        overlayBangNhaCC();
+        overlayThemSP();
+        overlayBangSP();
     });
 });

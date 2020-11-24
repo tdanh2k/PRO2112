@@ -88,40 +88,26 @@ function clearAllNhaCungCapForm() {
 };
 
 //loadingoverlay functions
-function overlayThemNhaCC() {
-    $("#ThemNhaCC").LoadingOverlay("show", {
+function overlaynhanvienProfile() {
+    $("#NhanVienProfile").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemNhaCC").LoadingOverlay("hide");
+            $("#NhanVienProfile").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemNhaCC").LoadingOverlay("progress", count);
+        $("#NhanVienProfile").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangNhaCC() {
-    $("#BangNhaCC").LoadingOverlay("show", {
-
-    });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
-            $("#BangNhaCC").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangNhaCC").LoadingOverlay("progress", count);
-    }, 300);
-};
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
+    console.log('cac');
     //Ready functions
     $("#txtEmailNhaCC").inputmask("email");
 
@@ -202,9 +188,6 @@ $(document).ready(function() {
     $("#tblDanhSachNhaCungCap").DataTable({
         "responsive": true,
         "autoWidth": false,
-        "fixedHeader": true,
-        "scrollY": "400px",
-        "scrollCollapse": true,
     });
 
     //Toasts
@@ -337,7 +320,6 @@ $(document).ready(function() {
     });
 
     $(window).on("load", function() {
-        overlayThemNhaCC();
-        overlayBangNhaCC();
+        overlaynhanvienProfile();
     });
 });

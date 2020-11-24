@@ -87,7 +87,38 @@ function clearAllNhanVienForm() {
     $("#chkSuThatNV").prop("checked", false);
 };
 
+//loadingoverlay functions
+function overlayThemNV() {
+    $("#ThemNV").LoadingOverlay("show", {
 
+    });
+    var count = 0;
+    var interval = setInterval(function() {
+        if (count >= 100) {
+            clearInterval(interval);
+            $("#ThemNV").LoadingOverlay("hide");
+            return;
+        }
+        count += 10;
+        $("#ThemNV").LoadingOverlay("progress", count);
+    }, 300);
+};
+
+function overlayBangNV() {
+    $("#BangNV").LoadingOverlay("show", {
+
+    });
+    var count = 0;
+    var interval = setInterval(function() {
+        if (count >= 100) {
+            clearInterval(interval);
+            $("#BangNV").LoadingOverlay("hide");
+            return;
+        }
+        count += 10;
+        $("#BangNV").LoadingOverlay("progress", count);
+    }, 300);
+};
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
@@ -292,5 +323,10 @@ $(document).ready(function() {
 
     $('#btnLamMoiHinhNV').on('click', function() {
         resetTables();
+    });
+
+    $(window).on("load", function() {
+        overlayThemNV();
+        overlayBangNV();
     });
 });

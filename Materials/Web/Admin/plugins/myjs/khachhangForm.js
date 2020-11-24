@@ -74,56 +74,56 @@ function resetTables() {
 }
 
 //function ClearAlls
-function clearAllNhaCungCapForm() {
+function clearAllKhachHangForm() {
     clearAllMessage();
-    var validator = $("#frmNhaCungCap").validate();
+    var validator = $("#frmKhachHang").validate();
     validator.resetForm();
-    $('#txtTenNhaCC').val('');
-    $('#txtSdtNhaCC').val('');
-    $('#txtEmailNhaCC').val('');
-    $('#txtNgayKiHopDongNhaCC').val('');
-    $('#txtNgayKetThucHopDongNhaCC').val('');
-    $('#txtDiaChiNhaCC').val('');
-    $('#txtGhiChuNhaCC').val('');
+    $('#txtTenKH').val('');
+    $('#txtSdtKH').val('');
+    $('#txtEmailKH').val('');
+    $('#txtNgayDangKiKH').val('');
+    $('#txtNgayKetThucKH').val('');
+    $('#txtDiaChiKH').val('');
+    $('#txtGhiChuKH').val('');
 };
 
 //loadingoverlay functions
-function overlayThemNhaCC() {
-    $("#ThemNhaCC").LoadingOverlay("show", {
+function overlayThemKH() {
+    $("#ThemKH").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemNhaCC").LoadingOverlay("hide");
+            $("#ThemKH").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemNhaCC").LoadingOverlay("progress", count);
+        $("#ThemKH").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangNhaCC() {
-    $("#BangNhaCC").LoadingOverlay("show", {
+function overlayBangKH() {
+    $("#BangKH").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#BangNhaCC").LoadingOverlay("hide");
+            $("#BangKH").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#BangNhaCC").LoadingOverlay("progress", count);
+        $("#BangKH").LoadingOverlay("progress", count);
     }, 300);
 };
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
     //Ready functions
-    $("#txtEmailNhaCC").inputmask("email");
+    $("#txtEmailKH").inputmask("email");
 
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -199,12 +199,9 @@ $(document).ready(function() {
     });
 
     //Datatables functions
-    $("#tblDanhSachNhaCungCap").DataTable({
+    $("#tblDanhSachKhachHang").DataTable({
         "responsive": true,
         "autoWidth": false,
-        "fixedHeader": true,
-        "scrollY": "400px",
-        "scrollCollapse": true,
     });
 
     //Toasts
@@ -244,49 +241,49 @@ $(document).ready(function() {
     }, "Số điện thoại phải có 10 số và đúng theo quy định");
 
 
-    $('#frmNhaCungCap').validate({
+    $('#frmKhachHang').validate({
         rules: {
-            txtTenNhaCC: {
+            txtTenKH: {
                 required: true,
             },
-            txtSdtNhaCC: {
+            txtSdtKH: {
                 required: true,
                 minlength: 10,
                 CheckSdtNhaCC: true
             },
-            txtEmailNhaCC: {
+            txtEmailKH: {
                 required: true
             },
-            txtNgayKiHopDongNhaCC: {
+            txtNgayDangKiKH: {
                 required: true,
             },
-            txtNgayKetThucHopDongNhaCC: {
+            txtNgayKetThucKH: {
                 required: true
             },
-            txtDiaChiNhaCC: {
+            txtDiaChiKH: {
                 required: true
             }
         },
         messages: {
-            txtTenNhaCC: {
-                required: "Nhập tên nhà cung cấp"
+            txtTenKH: {
+                required: "Nhập tên khách hàng"
             },
-            txtSdtNhaCC: {
-                required: "Nhập số điện thoại nhà cung cấp",
+            txtSdtKH: {
+                required: "Nhập số điện thoại khách hàng",
                 minlength: "Số điện thoại phải 10 số",
                 number: "Số điện thoại chưa đủ số theo quy định"
             },
-            txtEmailNhaCC: {
-                required: "Nhập Email nhà cung cấp",
+            txtEmailKH: {
+                required: "Nhập Email khách hàng",
             },
-            txtNgayKiHopDongNhaCC: {
-                required: "Nhập ngày kí hợp đồng nhà cung cấp",
+            txtNgayDangKiKH: {
+                required: "Nhập đăng kí khách hàng",
             },
-            txtNgayKetThucHopDongNhaCC: {
-                required: "Nhập ngày kết thúc hợp đồng nhà cung cấp"
+            txtNgayKetThucKH: {
+                required: "Nhập ngày kết thúc khách hàng"
             },
-            txtDiaChiNhaCC: {
-                required: "Nhập địa chỉ nhà cung cấp"
+            txtDiaChiKH: {
+                required: "Nhập địa chỉ khách hàng"
             }
         },
         errorElement: 'span',
@@ -303,41 +300,41 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhaCungCap >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachKhachHang >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
 
     //btn Function Groups
-    $('#btnThemNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
+    $('#btnThemKhachHang').on('click', function() {
+        if (!$("#frmKhachHang").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÀ CUNG CẤP';
+            var text = 'KHÁCH HÀNG';
             successInsert(text);
         };
     });
-    $('#btnSuaNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
+    $('#btnSuaKhachHang').on('click', function() {
+        if (!$("#frmKhachHang").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÀ CUNG CẤP';
+            var text = 'KHÁCH HÀNG';
             successEdit(text);
         };
     });
-    $('#btnNhapLaiNhaCungCap').on('click', function() {
-
-        clearAllNhaCungCapForm();
+    $('#btnNhapLaiKhachHang').on('click', function() {
+        overlayNhaCC();
+        clearAllKhachHangForm();
     });
 
-    $('#btnLamMoiTblNhaCungCap').on('click', function() {
+    $('#btnLamMoiTblKhachHang').on('click', function() {
         resetTables();
     });
 
     $(window).on("load", function() {
-        overlayThemNhaCC();
-        overlayBangNhaCC();
+        overlayBangKH();
+        overlayThemKH();
     });
 });
