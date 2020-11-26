@@ -89,155 +89,153 @@
             <section class="content">
                 <div class="container-fluid">
                     <!--Thêm nhân viên-->
-                    <div id="ThemNV" class="mb-5">
-                        <div class="row">
-                            <!-- left column -->
-                            <div class="col-md-8">
-                                <!-- general form elements -->
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">
-                                            Thêm nhân viên
-                                        </h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                                        </div>
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-8">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Thêm nhân viên
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                                     </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <form role="form" id="frmNhanVien">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tên nhân viên</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                                            </div>
-                                                            <input type="text" class="form-control" id="txtTenNV" name="txtTenNV" placeholder="Nhập tên của nhân viên" required>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <form role="form" id="frmNhanVien">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tên nhân viên</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
                                                         </div>
-                                                        <!-- /.input group -->
+                                                        <input type="text" class="form-control" id="txtTenNV" name="txtTenNV" placeholder="Nhập tên của nhân viên" required>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Tài khoản đăng nhập</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                                            </div>
-                                                            <input type="text" class="form-control" id="txtTaiKhoanNV" name="txtTaiKhoanNV" placeholder="Nhập tài khoản của nhân viên" required>
-                                                        </div>
-                                                        <!-- /.input group -->
-                                                    </div>
+                                                    <!-- /.input group -->
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Ngày sinh:</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                            </div>
-                                                            <input type="text" class="form-control" id="txtNgaySinhNV" name="txtNgaySinhNV" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="Nhập ngày sinh của nhân viên" required>
+                                                <div class="form-group">
+                                                    <label>Tài khoản đăng nhập</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                                                         </div>
-                                                        <!-- /.input group -->
+                                                        <input type="text" class="form-control" id="txtTaiKhoanNV" name="txtTaiKhoanNV" placeholder="Nhập tài khoản của nhân viên" required>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Mật khẩu đăng nhập</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                                            </div>
-                                                            <input type="password" class="form-control" id="txtMatKhauNV" name="txtMatKhauNV" placeholder="Nhập mật khẩu của nhân viên" required>
-                                                        </div>
-                                                        <!-- /.input group -->
-                                                    </div>
+                                                    <!-- /.input group -->
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Chức vụ nhân viên</label>
-                                                        <select class="custom-select" id="cboChucVuNV" name="cboChucVuNV" title="Some placeholder text..." required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Ngày sinh:</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="txtNgaySinhNV" name="txtNgaySinhNV" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="Nhập ngày sinh của nhân viên" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mật khẩu đăng nhập</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                                        </div>
+                                                        <input type="password" class="form-control" id="txtMatKhauNV" name="txtMatKhauNV" placeholder="Nhập mật khẩu của nhân viên" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Chức vụ nhân viên</label>
+                                                    <select class="custom-select" id="cboChucVuNV" name="cboChucVuNV" title="Some placeholder text..." required>
                                                         <option value="" selected disabled hidden>Chức vụ nhân viên</option>                                                        <option>Giám đốc</option>
                                                         <option>Nhân viên</option>
                                                         <option>Lao Công</option>
                                                         <option>Bảo vệ</option>
                                                     </select>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <div class="icheck-success d-inline">
+                                                        <input type="radio" id="rdoNVNam" name="r1" checked>
+                                                        <label for="rdoNVNam">Nam</label>
                                                     </div>
-                                                    <div class="form-group clearfix">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="radio" id="rdoNVNam" name="r1" checked>
-                                                            <label for="rdoNVNam">Nam</label>
-                                                        </div>
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="radio" id="rdoNVNu" name="r1">
-                                                            <label for="rdoNVNu">Nữ</label>
-                                                        </div>
+                                                    <div class="icheck-success d-inline">
+                                                        <input type="radio" id="rdoNVNu" name="r1">
+                                                        <label for="rdoNVNu">Nữ</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputFile">Hình nhân viên</label>
-                                                        <div class="input-group">
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="ipnHinhNV">
-                                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                            </div>
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text" id="btnUploadImg">Upload</span>
-                                                            </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputFile">Hình nhân viên</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="ipnHinhNV">
+                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group clearfix">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" id="chkSuThatNV" name="chkSuThatNV" required>
-                                                            <label for="chkSuThatNV">Tôi chắc chắn nhập đúng sự thật</label>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="btnUploadImg">Upload</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.row -->
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button id="btnThemNV" class="btn btn-success"><i class="fas fa-save"></i> Thêm nhân viên</button>
-                                        <button id="btnSuaNV" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa nhân viên</button>
-                                        <button id="btnNhapLaiNV" class="btn btn-primary"><i class="fas fa-circle-notch"></i> Nhập lại</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <!-- general form elements -->
-                                <div class="card card-danger">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Hình nhân viên</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                            <div class="col-md-12">
+                                                <div class="form-group clearfix">
+                                                    <div class="icheck-success d-inline">
+                                                        <input type="checkbox" id="chkSuThatNV" name="chkSuThatNV" required>
+                                                        <label for="chkSuThatNV">Tôi chắc chắn nhập đúng sự thật</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            asdasdsad
-                                        </div>
-                                    </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer pull-right">
-                                        <button id="btnLamMoiHinhNV" class="btn btn-success text-white">
-                                        <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
-                                    </button>
-                                    </div>
                                     </form>
+                                </div>
+                                <!-- /.row -->
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button id="btnThemNV" class="btn btn-success"><i class="fas fa-save"></i> Thêm nhân viên</button>
+                                    <button id="btnSuaNV" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa nhân viên</button>
+                                    <button id="btnNhapLaiNV" class="btn btn-primary"><i class="fas fa-circle-notch"></i> Nhập lại</button>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <!-- general form elements -->
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title">Hình nhân viên</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        asdasdsad
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer pull-right">
+                                    <button id="btnLamMoiHinhNV" class="btn btn-success text-white">
+                                        <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
+                                    </button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-
+                    <hr />
                     <!--Thống kê nhân viên-->
-                    <div class="row" id="BangNV">
+                    <div class="row">
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
@@ -407,7 +405,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="../../plugins/angularjs/angular-route.js"></script>
         <script src="../../dist/js/demo.js"></script>
-        <script src="../../plugins/loadingoverlay/loadingoverlay.min.js"></script>
         <script>
         </script>
 </body>

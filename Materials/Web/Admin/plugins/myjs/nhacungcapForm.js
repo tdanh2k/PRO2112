@@ -87,38 +87,7 @@ function clearAllNhaCungCapForm() {
     $('#txtGhiChuNhaCC').val('');
 };
 
-//loadingoverlay functions
-function overlayThemNhaCC() {
-    $("#ThemNhaCC").LoadingOverlay("show", {
 
-    });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
-            $("#ThemNhaCC").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemNhaCC").LoadingOverlay("progress", count);
-    }, 300);
-};
-
-function overlayBangNhaCC() {
-    $("#BangNhaCC").LoadingOverlay("show", {
-
-    });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
-            $("#BangNhaCC").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangNhaCC").LoadingOverlay("progress", count);
-    }, 300);
-};
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
@@ -202,9 +171,6 @@ $(document).ready(function() {
     $("#tblDanhSachNhaCungCap").DataTable({
         "responsive": true,
         "autoWidth": false,
-        "fixedHeader": true,
-        "scrollY": "400px",
-        "scrollCollapse": true,
     });
 
     //Toasts
@@ -303,7 +269,7 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhaCungCap >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
@@ -328,7 +294,6 @@ $(document).ready(function() {
         };
     });
     $('#btnNhapLaiNhaCungCap').on('click', function() {
-
         clearAllNhaCungCapForm();
     });
 
@@ -337,7 +302,18 @@ $(document).ready(function() {
     });
 
     $(window).on("load", function() {
-        overlayThemNhaCC();
-        overlayBangNhaCC();
+        $("#ThemNV").LoadingOverlay("show", {
+
+        });
+        var count = 0;
+        var interval = setInterval(function() {
+            if (count >= 100) {
+                clearInterval(interval);
+                $("#ThemNV").LoadingOverlay("hide");
+                return;
+            }
+            count += 10;
+            $("#ThemNV").LoadingOverlay("progress", count);
+        }, 300);
     });
 });
