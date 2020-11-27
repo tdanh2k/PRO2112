@@ -87,7 +87,37 @@ function clearAllNhaCungCapForm() {
     $('#txtGhiChuNhaCC').val('');
 };
 
+function overlayThemNhaCC() {
+    $("#ThemNhaCC").LoadingOverlay("show", {
 
+    });
+    var count = 0;
+    var interval = setInterval(function() {
+        if (count >= 100) {
+            clearInterval(interval);
+            $("#ThemNhaCC").LoadingOverlay("hide");
+            return;
+        }
+        count += 10;
+        $("#ThemNhaCC").LoadingOverlay("progress", count);
+    }, 300);
+};
+
+function overlayBangNhaCC() {
+    $("#BangNhaCC").LoadingOverlay("show", {
+
+    });
+    var count = 0;
+    var interval = setInterval(function() {
+        if (count >= 100) {
+            clearInterval(interval);
+            $("#BangNhaCC").LoadingOverlay("hide");
+            return;
+        }
+        count += 10;
+        $("#BangNhaCC").LoadingOverlay("progress", count);
+    }, 300);
+};
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
@@ -302,18 +332,7 @@ $(document).ready(function() {
     });
 
     $(window).on("load", function() {
-        $("#ThemNV").LoadingOverlay("show", {
-
-        });
-        var count = 0;
-        var interval = setInterval(function() {
-            if (count >= 100) {
-                clearInterval(interval);
-                $("#ThemNV").LoadingOverlay("hide");
-                return;
-            }
-            count += 10;
-            $("#ThemNV").LoadingOverlay("progress", count);
-        }, 300);
+        overlayThemNhaCC();
+        overlayBangNhaCC();
     });
 });

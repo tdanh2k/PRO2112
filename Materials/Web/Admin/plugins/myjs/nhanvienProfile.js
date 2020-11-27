@@ -74,54 +74,43 @@ function resetTables() {
 }
 
 //function ClearAlls
-function clearAllNhanVienForm() {
+function clearAllNhaCungCapForm() {
     clearAllMessage();
-    var validator = $("#frmNhanVien").validate();
+    var validator = $("#frmNhaCungCap").validate();
     validator.resetForm();
-    $('#txtTenNV').val('');
-    $('#txtTaiKhoanNV').val('');
-    $('#txtNgaySinhNV').val('');
-    $('#txtMatKhauNV').val('');
-    $("#cboChucVuNV").val('').prop('selected', true);
-    $("#rdoNVNam").prop("checked", true);
-    $("#chkSuThatNV").prop("checked", false);
+    $('#txtTenNhaCC').val('');
+    $('#txtSdtNhaCC').val('');
+    $('#txtEmailNhaCC').val('');
+    $('#txtNgayKiHopDongNhaCC').val('');
+    $('#txtNgayKetThucHopDongNhaCC').val('');
+    $('#txtDiaChiNhaCC').val('');
+    $('#txtGhiChuNhaCC').val('');
 };
 
-function overlayThemNV() {
-    $("#ThemNV").LoadingOverlay("show", {
+//loadingoverlay functions
+function overlaynhanvienProfile() {
+    $("#nhanvienProfile").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemNV").LoadingOverlay("hide");
+            $("#nhanvienProfile").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemNV").LoadingOverlay("progress", count);
+        $("#nhanvienProfile").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangNV() {
-    $("#BangNV").LoadingOverlay("show", {
-
-    });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
-            $("#BangNV").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangNV").LoadingOverlay("progress", count);
-    }, 300);
-};
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
+    console.log('cac');
     //Ready functions
+    $("#txtEmailNhaCC").inputmask("email");
+
     //Initialize Select2 Elements
     $('.select2').select2()
 
@@ -129,6 +118,7 @@ $(document).ready(function() {
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     })
+    $("#txtDiaChiNhaCC").inputmask("");
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', {
@@ -194,9 +184,8 @@ $(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
-    //Some function
-
-    $("#tblDanhSachNhanVien").DataTable({
+    //Datatables functions
+    $("#tblDanhSachNhaCungCap").DataTable({
         "responsive": true,
         "autoWidth": false,
     });
@@ -233,46 +222,55 @@ $(document).ready(function() {
         }
     });
 
-    $.validator.addMethod("validUsername", function(value, element) {
-        return /^[a-zA-Z0-9_.-]+$/.test(value);
-    }, "Tài khoản không được có khoảng cách");
+    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
+        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
+    }, "Số điện thoại phải có 10 số và đúng theo quy định");
 
-    $('#frmNhanVien').validate({
+
+    $('#frmNhaCungCap').validate({
         rules: {
-            txtTenNV: {
+            txtTenNhaCC: {
                 required: true,
             },
-            txtTaiKhoanNV: {
+            txtSdtNhaCC: {
                 required: true,
-                validUsername: true
+                minlength: 10,
+                CheckSdtNhaCC: true
             },
-            txtNgaySinhNV: {
+            txtEmailNhaCC: {
                 required: true
             },
-            txtMatKhauNV: {
+            txtNgayKiHopDongNhaCC: {
                 required: true,
-                minlength: 5
             },
-            cboChucVuNV: {
+            txtNgayKetThucHopDongNhaCC: {
+                required: true
+            },
+            txtDiaChiNhaCC: {
                 required: true
             }
         },
         messages: {
-            txtTenNV: {
-                required: "Nhập tên nhân viên"
+            txtTenNhaCC: {
+                required: "Nhập tên nhà cung cấp"
             },
-            txtTaiKhoanNV: {
-                required: "Nhập tài khoản nhân viên",
+            txtSdtNhaCC: {
+                required: "Nhập số điện thoại nhà cung cấp",
+                minlength: "Số điện thoại phải 10 số",
+                number: "Số điện thoại chưa đủ số theo quy định"
             },
-            txtNgaySinhNV: {
-                required: "Nhập ngày sinh nhân viên",
+            txtEmailNhaCC: {
+                required: "Nhập Email nhà cung cấp",
             },
-            txtMatKhauNV: {
-                required: "Nhập mật khẩu nhân viên",
-                minlength: "Mật khẩu phải ít nhất 5 kí tự"
+            txtNgayKiHopDongNhaCC: {
+                required: "Nhập ngày kí hợp đồng nhà cung cấp",
             },
-            chkSuThatNV: "Làm ơn tích vào điều kiện",
-            cboChucVuNV: "Chọn chức vụ nhân viên"
+            txtNgayKetThucHopDongNhaCC: {
+                required: "Nhập ngày kết thúc hợp đồng nhà cung cấp"
+            },
+            txtDiaChiNhaCC: {
+                required: "Nhập địa chỉ nhà cung cấp"
+            }
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {
@@ -288,44 +286,40 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachNhaCungCap >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
 
     //btn Function Groups
-    $('#btnThemNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
+    $('#btnThemNhaCungCap').on('click', function() {
+        if (!$("#frmNhaCungCap").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÂN VIÊN';
+            var text = 'NHÀ CUNG CẤP';
             successInsert(text);
         };
     });
-    $('#btnSuaNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
+    $('#btnSuaNhaCungCap').on('click', function() {
+        if (!$("#frmNhaCungCap").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÂN VIÊN';
+            var text = 'NHÀ CUNG CẤP';
             successEdit(text);
         };
     });
-    $('#btnNhapLaiNV').on('click', function() {
-        clearAllNhanVienForm();
+    $('#btnNhapLaiNhaCungCap').on('click', function() {
+
+        clearAllNhaCungCapForm();
     });
 
-    $('#btnLamMoiTblNV').on('click', function() {
-        resetTables();
-    });
-
-    $('#btnLamMoiHinhNV').on('click', function() {
+    $('#btnLamMoiTblNhaCungCap').on('click', function() {
         resetTables();
     });
 
     $(window).on("load", function() {
-        overlayThemNV();
-        overlayBangNV();
+        overlaynhanvienProfile();
     });
 });

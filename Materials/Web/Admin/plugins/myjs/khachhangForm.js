@@ -74,54 +74,57 @@ function resetTables() {
 }
 
 //function ClearAlls
-function clearAllNhanVienForm() {
+function clearAllKhachHangForm() {
     clearAllMessage();
-    var validator = $("#frmNhanVien").validate();
+    var validator = $("#frmKhachHang").validate();
     validator.resetForm();
-    $('#txtTenNV').val('');
-    $('#txtTaiKhoanNV').val('');
-    $('#txtNgaySinhNV').val('');
-    $('#txtMatKhauNV').val('');
-    $("#cboChucVuNV").val('').prop('selected', true);
-    $("#rdoNVNam").prop("checked", true);
-    $("#chkSuThatNV").prop("checked", false);
+    $('#txtTenKH').val('');
+    $('#txtSdtKH').val('');
+    $('#txtEmailKH').val('');
+    $('#txtNgayDangKiKH').val('');
+    $('#txtNgayKetThucKH').val('');
+    $('#txtDiaChiKH').val('');
+    $('#txtGhiChuKH').val('');
 };
 
-function overlayThemNV() {
-    $("#ThemNV").LoadingOverlay("show", {
+//loadingoverlay functions
+function overlayThemKH() {
+    $("#ThemKH").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemNV").LoadingOverlay("hide");
+            $("#ThemKH").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemNV").LoadingOverlay("progress", count);
+        $("#ThemKH").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangNV() {
-    $("#BangNV").LoadingOverlay("show", {
+function overlayBangKH() {
+    $("#BangKH").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#BangNV").LoadingOverlay("hide");
+            $("#BangKH").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#BangNV").LoadingOverlay("progress", count);
+        $("#BangKH").LoadingOverlay("progress", count);
     }, 300);
 };
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
     //Ready functions
+    $("#txtEmailKH").inputmask("email");
+
     //Initialize Select2 Elements
     $('.select2').select2()
 
@@ -129,6 +132,7 @@ $(document).ready(function() {
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     })
+    $("#txtDiaChiNhaCC").inputmask("");
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', {
@@ -194,9 +198,8 @@ $(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
-    //Some function
-
-    $("#tblDanhSachNhanVien").DataTable({
+    //Datatables functions
+    $("#tblDanhSachKhachHang").DataTable({
         "responsive": true,
         "autoWidth": false,
     });
@@ -233,46 +236,55 @@ $(document).ready(function() {
         }
     });
 
-    $.validator.addMethod("validUsername", function(value, element) {
-        return /^[a-zA-Z0-9_.-]+$/.test(value);
-    }, "Tài khoản không được có khoảng cách");
+    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
+        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
+    }, "Số điện thoại phải có 10 số và đúng theo quy định");
 
-    $('#frmNhanVien').validate({
+
+    $('#frmKhachHang').validate({
         rules: {
-            txtTenNV: {
+            txtTenKH: {
                 required: true,
             },
-            txtTaiKhoanNV: {
+            txtSdtKH: {
                 required: true,
-                validUsername: true
+                minlength: 10,
+                CheckSdtNhaCC: true
             },
-            txtNgaySinhNV: {
+            txtEmailKH: {
                 required: true
             },
-            txtMatKhauNV: {
+            txtNgayDangKiKH: {
                 required: true,
-                minlength: 5
             },
-            cboChucVuNV: {
+            txtNgayKetThucKH: {
+                required: true
+            },
+            txtDiaChiKH: {
                 required: true
             }
         },
         messages: {
-            txtTenNV: {
-                required: "Nhập tên nhân viên"
+            txtTenKH: {
+                required: "Nhập tên khách hàng"
             },
-            txtTaiKhoanNV: {
-                required: "Nhập tài khoản nhân viên",
+            txtSdtKH: {
+                required: "Nhập số điện thoại khách hàng",
+                minlength: "Số điện thoại phải 10 số",
+                number: "Số điện thoại chưa đủ số theo quy định"
             },
-            txtNgaySinhNV: {
-                required: "Nhập ngày sinh nhân viên",
+            txtEmailKH: {
+                required: "Nhập Email khách hàng",
             },
-            txtMatKhauNV: {
-                required: "Nhập mật khẩu nhân viên",
-                minlength: "Mật khẩu phải ít nhất 5 kí tự"
+            txtNgayDangKiKH: {
+                required: "Nhập ngày đăng kí khách hàng",
             },
-            chkSuThatNV: "Làm ơn tích vào điều kiện",
-            cboChucVuNV: "Chọn chức vụ nhân viên"
+            txtNgayKetThucKH: {
+                required: "Nhập ngày kết thúc khách hàng"
+            },
+            txtDiaChiKH: {
+                required: "Nhập địa chỉ khách hàng"
+            }
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {
@@ -288,44 +300,40 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachKhachHang >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
 
     //btn Function Groups
-    $('#btnThemNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
+    $('#btnThemKhachHang').on('click', function() {
+        if (!$("#frmKhachHang").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÂN VIÊN';
+            var text = 'KHÁCH HÀNG';
             successInsert(text);
         };
     });
-    $('#btnSuaNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
+    $('#btnSuaKhachHang').on('click', function() {
+        if (!$("#frmKhachHang").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'NHÂN VIÊN';
+            var text = 'KHÁCH HÀNG';
             successEdit(text);
         };
     });
-    $('#btnNhapLaiNV').on('click', function() {
-        clearAllNhanVienForm();
+    $('#btnNhapLaiKhachHang').on('click', function() {
+        clearAllKhachHangForm();
     });
 
-    $('#btnLamMoiTblNV').on('click', function() {
-        resetTables();
-    });
-
-    $('#btnLamMoiHinhNV').on('click', function() {
+    $('#btnLamMoiTblKhachHang').on('click', function() {
         resetTables();
     });
 
     $(window).on("load", function() {
-        overlayThemNV();
-        overlayBangNV();
+        overlayBangKH();
+        overlayThemKH();
     });
 });
