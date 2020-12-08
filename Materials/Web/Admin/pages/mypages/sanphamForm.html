@@ -21,15 +21,11 @@
     <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <!-- JQVMap -->
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
-    <!-- datetime picker-->
-    <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap-datetimepicker.min.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
     <!-- iCheck for checkboxes and radio inputs -->
@@ -51,6 +47,8 @@
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed" ng-app="myapp">
@@ -128,13 +126,9 @@
                                                             <div class="input-group-prepend">
                                                                 <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-apple-alt"></i></label>
                                                             </div>
-                                                            <select class="custom-select" id="cboLoaiSP" name="cboLoaiSP" required> 
-                                                            <option value="" selected disabled hidden>Chọn loại cho sản phẩm</option> 
-                                                            <option>Giám đốc</option>
-                                                            <option>Nhân viên</option>
-                                                            <option>Lao Công</option>
-                                                            <option>Bảo vệ</option>
-                                                        </select>
+                                                            <select class="form-control select2" id="cboLoaiSP" name="cboLoaiSP" required> 
+                                                       
+                                                    </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,13 +139,9 @@
                                                             <div class="input-group-prepend">
                                                                 <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-archive"></i></label>
                                                             </div>
-                                                            <select class="custom-select" id="cboNhaCungCapSP" name="cboNhaCungCapSP" required> 
-                                                            <option value="" selected disabled hidden>Chọn nhà cung cấp cho sản phẩm</option> 
-                                                            <option>Giám đốc</option>
-                                                            <option>Nhân viên</option>
-                                                            <option>Lao Công</option>
-                                                            <option>Bảo vệ</option>
-                                                        </select>
+                                                            <select class="form-control select2" id="cboNhaCungCapSP" name="cboNhaCungCapSP" required> 
+                                                       
+                                                    </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -247,6 +237,41 @@
                                                 <td>1.8</td>
                                                 <td>A</td>
                                             </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -261,8 +286,8 @@
                                 </div>
                                 <div class="card-footer text-right">
                                     <button id="btnLamMoiTblSanPham" class="btn btn-success text-white">
-                                        <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
-                                    </button>
+                                    <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
+                                </button>
                                 </div>
                             </div>
                         </div>
@@ -340,9 +365,6 @@
     <!-- InputMask -->
     <script src="../../plugins/moment/moment.min.js"></script>
     <script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-    <!-- date-time picker-->
-    <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.vi.min.js"></script>
     <!-- date-range-picker -->
     <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap color picker -->
@@ -350,6 +372,7 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Bootstrap Switch -->
+    <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <!-- bs-custom-file-input -->>
     <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
@@ -369,7 +392,8 @@
     <script src="../../plugins/angularjs/angular-route.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../../plugins/loadingoverlay/loadingoverlay.min.js"></script>
-
+    <script>
+    </script>
 </body>
 
 </html>

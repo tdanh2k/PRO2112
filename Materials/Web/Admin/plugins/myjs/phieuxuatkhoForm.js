@@ -74,65 +74,131 @@ function resetTables() {
 }
 
 //function ClearAlls
-function clearAllKhachHangForm() {
+function clearAllPhieuNhapKhoForm() {
     clearAllMessage();
-    var validator = $("#frmKhachHang").validate();
+    var validator = $("#frmPhieuNhapKho").validate();
     validator.resetForm();
-    $('#txtTenKH').val('');
-    $('#txtSdtKH').val('');
-    $('#txtEmailKH').val('');
-    $('#txtNgayDangKiKH').val('');
-    $('#txtNgayKetThucKH').val('');
-    $('#txtDiaChiKH').val('');
-    $('#txtGhiChuKH').val('');
+    $('#txtSoLuongSPNhapKho').val('');
+    $('#txtGiaSPNhapKho').val('');
+    $('#txtGiaSPXuatKho').val('');
+    $('#cboLoaiSPNhapKho').val(null).trigger('change');
+    $('#cboTenSPNhapKho').val(null).trigger('change');
+    $('#cboTinhTrangSPPhieuNhapKho').val(null).trigger('change');
 };
 
-//loadingoverlay functions
-function overlayThemKH() {
-    $("#ThemKH").LoadingOverlay("show", {
+function overlayThemPhieuNhapKho() {
+    $("#ThemPhieuNhapKho").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#ThemKH").LoadingOverlay("hide");
+            $("#ThemPhieuNhapKho").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#ThemKH").LoadingOverlay("progress", count);
+        $("#ThemPhieuNhapKho").LoadingOverlay("progress", count);
     }, 300);
 };
 
-function overlayBangKH() {
-    $("#BangKH").LoadingOverlay("show", {
+function overlayBangPhieuNhapKho() {
+    $("#BangPhieuNhapKho").LoadingOverlay("show", {
 
     });
     var count = 0;
     var interval = setInterval(function() {
         if (count >= 100) {
             clearInterval(interval);
-            $("#BangKH").LoadingOverlay("hide");
+            $("#BangPhieuNhapKho").LoadingOverlay("hide");
             return;
         }
         count += 10;
-        $("#BangKH").LoadingOverlay("progress", count);
+        $("#BangPhieuNhapKho").LoadingOverlay("progress", count);
     }, 300);
+};
+
+//functions select2
+function loadDatacboTinhTrangSPPhieuNhapKho() {
+    let dataTinhTrang = [{
+            id: "CH",
+            text: "Còn hàng"
+        },
+        {
+            id: "HH",
+            text: "Hết hàng"
+        }
+    ];
+
+    $('#cboTinhTrangSPPhieuNhapKho').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Tình trạng sản phẩm",
+        allowClear: true,
+        data: dataTinhTrang
+    });
+};
+
+function loadDatacboLoaiSPNhapKho() {
+    let dataLoaiSPNhapKho = [{
+        id: "1",
+        text: "Rau"
+    }, {
+        id: "2",
+        text: "Củ"
+    }, {
+        id: "3",
+        text: "Quả"
+    }];
+
+    $('#cboLoaiSPNhapKho').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Loại sản phẩm",
+        allowClear: true,
+        data: dataLoaiSPNhapKho
+    });
+};
+
+function loadDatacboTenSPNhapKho() {
+    let dataTenSPNhapKho = [{
+        id: "1",
+        text: "Táo"
+    }, {
+        id: "2",
+        text: "Dưa"
+    }, {
+        id: "3",
+        text: "Cam"
+    }];
+
+    $('#cboTenSPNhapKho').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Loại sản phẩm",
+        allowClear: true,
+        data: dataTenSPNhapKho
+    });
 };
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
     //Ready functions
-    $("#txtEmailKH").inputmask("email");
 
-    //Initialize Select2 Elements
-    $('.select2').select2()
+    //datas select2
+    loadDatacboTinhTrangSPPhieuNhapKho();
+    $('#cboTinhTrangSPPhieuNhapKho').val(null).trigger('change');
+
+    loadDatacboLoaiSPNhapKho();
+    $('#cboLoaiSPNhapKho').val(null).trigger('change');
+
+    loadDatacboTenSPNhapKho();
+    $('#cboTenSPNhapKho').val(null).trigger('change');
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     })
-    $("#txtDiaChiNhaCC").inputmask("");
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', {
@@ -198,8 +264,9 @@ $(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
-    //Datatables functions
-    $("#tblDanhSachKhachHang").DataTable({
+    //Some function
+
+    $("#tblPhieuNhapKho").DataTable({
         "responsive": true,
         "autoWidth": false,
         "scrollY": "400px",
@@ -238,54 +305,55 @@ $(document).ready(function() {
         }
     });
 
-    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
-        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
-    }, "Số điện thoại phải có 10 số và đúng theo quy định");
+    $.validator.addMethod("validUsername", function(value, element) {
+        return /^[a-zA-Z0-9_.-]+$/.test(value);
+    }, "Tài khoản không được có khoảng cách");
 
-
-    $('#frmKhachHang').validate({
+    $('#frmPhieuNhapKho').validate({
         rules: {
-            txtTenKH: {
+            cboLoaiSPNhapKho: {
                 required: true,
             },
-            txtSdtKH: {
-                required: true,
-                minlength: 10,
-                CheckSdtNhaCC: true
-            },
-            txtEmailKH: {
-                required: true
-            },
-            txtNgayDangKiKH: {
+            cboTenSPNhapKho: {
                 required: true,
             },
-            txtNgayKetThucKH: {
-                required: true
+            txtSoLuongSPNhapKho: {
+                required: true,
+                number: true
             },
-            txtDiaChiKH: {
+            txtGiaSPNhapKho: {
+                required: true,
+                number: true
+            },
+            txtGiaSPXuatKho: {
+                required: true,
+                number: true
+            },
+            cboTinhTrangSPPhieuNhapKho: {
                 required: true
             }
         },
         messages: {
-            txtTenKH: {
-                required: "Nhập tên khách hàng"
+            cboLoaiSPNhapKho: {
+                required: "Chọn loại sản phẩm nhập kho"
             },
-            txtSdtKH: {
-                required: "Nhập số điện thoại khách hàng",
-                minlength: "Số điện thoại phải 10 số",
-                number: "Số điện thoại chưa đủ số theo quy định"
+            cboTenSPNhapKho: {
+                required: "Chọn tên sản phẩm nhập kho",
             },
-            txtEmailKH: {
-                required: "Nhập Email khách hàng",
+            txtSoLuongSPNhapKho: {
+                required: "Nhập số lượng nhập kho sản phẩm",
+                number: "Chỉ được nhập số"
             },
-            txtNgayDangKiKH: {
-                required: "Nhập ngày đăng kí khách hàng",
+            txtGiaSPNhapKho: {
+                required: "Nhập giá nhập kho sản phẩm",
+                number: "Chỉ được nhập số"
             },
-            txtNgayKetThucKH: {
-                required: "Nhập ngày kết thúc khách hàng"
+            txtGiaSPXuatKho: {
+                required: "Nhập giá xuất kho sản phẩm",
+                number: "Chỉ được nhập số"
             },
-            txtDiaChiKH: {
-                required: "Nhập địa chỉ khách hàng"
+            cboTinhTrangSPPhieuNhapKho: {
+                required: "Chọn tình trạng của sản phẩm"
             }
         },
         errorElement: 'span',
@@ -302,40 +370,44 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachKhachHang >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
 
     //btn Function Groups
-    $('#btnThemKhachHang').on('click', function() {
-        if (!$("#frmKhachHang").valid()) {
+    $('#btnThemPhieuNhapKho').on('click', function() {
+        if (!$("#frmPhieuNhapKho").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'KHÁCH HÀNG';
+            var text = 'NHÂN VIÊN';
             successInsert(text);
         };
     });
-    $('#btnSuaKhachHang').on('click', function() {
-        if (!$("#frmKhachHang").valid()) {
+    $('#btnSuaPhieuNhapKho').on('click', function() {
+        if (!$("#frmPhieuNhapKho").valid()) {
             errorForm();
             return;
         } else {
-            var text = 'KHÁCH HÀNG';
+            var text = 'NHÂN VIÊN';
             successEdit(text);
         };
     });
-    $('#btnNhapLaiKhachHang').on('click', function() {
-        clearAllKhachHangForm();
+    $('#btnNhapLaiPhieuNhapKho').on('click', function() {
+        clearAllPhieuNhapKhoForm();
     });
 
-    $('#btnLamMoiTblKhachHang').on('click', function() {
+    $('#btnLamMoiTblNV').on('click', function() {
+        resetTables();
+    });
+
+    $('#btnLamMoiHinhNV').on('click', function() {
         resetTables();
     });
 
     $(window).on("load", function() {
-        overlayBangKH();
-        overlayThemKH();
+        overlayThemPhieuNhapKho();
+        overlayBangPhieuNhapKho();
     });
 });

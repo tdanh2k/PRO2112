@@ -201,6 +201,8 @@ $(document).ready(function() {
     $("#tblDanhSachNhaCungCap").DataTable({
         "responsive": true,
         "autoWidth": false,
+        "scrollY": "400px",
+        "scrollCollapse": true,
     });
 
     //Toasts

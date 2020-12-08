@@ -79,8 +79,8 @@ function clearAllSanPhamForm() {
     var validator = $("#frmSanPham").validate();
     validator.resetForm();
     $('#txtTenSP').val('');
-    $("#cboLoaiSP").val('').prop('selected', true);
-    $("#cboNhaCungCapSP").val('').prop('selected', true);
+    $('#cboNhaCungCapSP').val(null).trigger('change');
+    $('#cboLoaiSP').val(null).trigger('change');
     $('#txtQRCodeSP').val('');
     $('#txtBarCodeSP').val('');
 };
@@ -118,6 +118,49 @@ function overlayBangSP() {
     }, 300);
 };
 
+//functions select2
+function loadDatacboLoaiSP() {
+    let dataLoaiSP = [{
+        id: "1",
+        text: "Rau"
+    }, {
+        id: "2",
+        text: "Củ"
+    }, {
+        id: "3",
+        text: "Quả"
+    }];
+
+    $('#cboLoaiSP').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Loại sản phẩm",
+        allowClear: true,
+        data: dataLoaiSP
+    });
+};
+
+function loadDatacboNhaCungCapSP() {
+    let dataLoaiSP = [{
+        id: "1",
+        text: "Vinamilk"
+    }, {
+        id: "2",
+        text: "2"
+    }, {
+        id: "3",
+        text: "3"
+    }];
+
+    $('#cboNhaCungCapSP').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Nhà cung cấp",
+        allowClear: true,
+        data: dataLoaiSP
+    });
+};
+
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
     //Icons Selects
@@ -127,7 +170,11 @@ $(document).ready(function() {
     $("#txtEmailNhaCC").inputmask("email");
 
     //Initialize Select2 Elements
-    $('.select2').select2()
+    loadDatacboLoaiSP();
+    $('#cboLoaiSP').val(null).trigger('change');
+
+    loadDatacboNhaCungCapSP();
+    $('#cboNhaCungCapSP').val(null).trigger('change');
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
@@ -203,6 +250,8 @@ $(document).ready(function() {
     $("#tblDanhSachSanPham").DataTable({
         "responsive": true,
         "autoWidth": false,
+        "scrollY": "400px",
+        "scrollCollapse": true,
     });
 
     //Toasts

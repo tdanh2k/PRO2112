@@ -82,7 +82,7 @@ function clearAllNhanVienForm() {
     $('#txtTaiKhoanNV').val('');
     $('#txtNgaySinhNV').val('');
     $('#txtMatKhauNV').val('');
-    $("#cboChucVuNV").val('').prop('selected', true);
+    $('#cboChucVuNV').val(null).trigger('change');
     $("#rdoNVNam").prop("checked", true);
     $("#chkSuThatNV").prop("checked", false);
 };
@@ -119,11 +119,61 @@ function overlayBangNV() {
     }, 300);
 };
 
+//functions select2
+function loadDatacboChucVuNV() {
+    let dataChucVuNhanVien = [{
+        "text": "Ban quản lý",
+        "children": [{
+            id: "GD",
+            text: "Giám đốc"
+        }, {
+            id: "PGD",
+            text: "Phó giám đốc"
+        }, {
+            id: "TK",
+            text: "Thư ký"
+        }],
+        "element": HTMLOptGroupElement
+    }, {
+        "text": "Nhân viên",
+        "children": [{
+            id: "TN",
+            text: "Thu ngân"
+        }, {
+            id: "NVTV",
+            text: "Nhân viên tư vấn"
+        }, {
+            id: "NVK",
+            text: "Nhân viên kho"
+        }],
+        "element": HTMLOptGroupElement
+    }, {
+        "text": "Khác",
+        "children": [{
+            id: "LC",
+            text: "Lao công"
+        }, {
+            id: "BV",
+            text: "Bảo vệ"
+        }],
+        "element": HTMLOptGroupElement
+    }];
+
+    $('#cboChucVuNV').select2({
+        language: "vi",
+        selectOnClose: true,
+        placeholder: "Chức vụ nhân viên",
+        allowClear: true,
+        data: dataChucVuNhanVien
+    });
+};
+
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
     //Ready functions
     //Initialize Select2 Elements
-    $('.select2').select2()
+    loadDatacboChucVuNV();
+    $('#cboChucVuNV').val(null).trigger('change');
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
@@ -199,6 +249,8 @@ $(document).ready(function() {
     $("#tblDanhSachNhanVien").DataTable({
         "responsive": true,
         "autoWidth": false,
+        "scrollY": "400px",
+        "scrollCollapse": true,
     });
 
     //Toasts

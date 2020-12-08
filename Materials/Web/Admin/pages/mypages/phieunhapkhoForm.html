@@ -71,13 +71,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Nhân viên</h1>
+                            <h1>Phiếu nhập kho</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                                <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
-                                <li class="breadcrumb-item active">Danh sách nhân viên</li>
+                                <li class="breadcrumb-item"><a href="#">Kho</a></li>
+                                <li class="breadcrumb-item active">Phiếu nhập kho</li>
                             </ol>
                         </div>
                     </div>
@@ -89,14 +89,14 @@
             <section class="content">
                 <div class="container-fluid">
                     <!--Thêm nhân viên-->
-                    <div class="row" id="ThemNV">
+                    <div class="row" id="ThemPhieuNhapKho">
                         <!-- left column -->
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <!-- general form elements -->
                             <div class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                        Thêm nhân viên
+                                        Phiếu nhập kho
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -105,94 +105,80 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form role="form" id="frmNhanVien">
+                                    <form role="form" id="frmPhieuNhapKho">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Tên nhân viên</label>
+                                                    <label>Loại sản phẩm</label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-apple-alt"></i></label>
                                                         </div>
-                                                        <input type="text" class="form-control" id="txtTenNV" name="txtTenNV" placeholder="Nhập tên của nhân viên" required>
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Tài khoản đăng nhập</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                                        </div>
-                                                        <input type="text" class="form-control" id="txtTaiKhoanNV" name="txtTaiKhoanNV" placeholder="Nhập tài khoản của nhân viên" required>
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Ngày sinh:</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                        </div>
-                                                        <input type="text" class="form-control" id="txtNgaySinhNV" name="txtNgaySinhNV" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="Nhập ngày sinh của nhân viên" required>
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Mật khẩu đăng nhập</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                                        </div>
-                                                        <input type="password" class="form-control" id="txtMatKhauNV" name="txtMatKhauNV" placeholder="Nhập mật khẩu của nhân viên" required>
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Chức vụ nhân viên</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-award"></i></label>
-                                                        </div>
-                                                        <select class="form-control select2" id="cboChucVuNV" name="cboChucVuNV" required> 
-                                                       
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group clearfix">
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="rdoNVNam" name="r1" checked>
-                                                        <label for="rdoNVNam">Nam</label>
-                                                    </div>
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="rdoNVNu" name="r1">
-                                                        <label for="rdoNVNu">Nữ</label>
+                                                        <select class="form-control select2" id="cboLoaiSPNhapKho" name="cboLoaiSPNhapKho" required> 
+                                                   
+                                                </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputFile">Hình nhân viên</label>
+                                                    <label>Tên sản phẩm</label>
                                                     <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="ipnHinhNV">
-                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-apple-alt"></i></label>
                                                         </div>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="btnUploadImg">Upload</span>
-                                                        </div>
+                                                        <select class="form-control select2" id="cboTenSPNhapKho" name="cboTenSPNhapKho" required> 
+                                                   
+                                                </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group clearfix">
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="checkbox" id="chkSuThatNV" name="chkSuThatNV" required>
-                                                        <label for="chkSuThatNV">Tôi chắc chắn nhập đúng sự thật</label>
+                                                <div class="form-group">
+                                                    <label>Số lượng nhập</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-sort-numeric-up"></i></span>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="txtSoLuongSPNhapKho" name="txtSoLuongSPNhapKho" placeholder="Nhập số lượng muốn nhập kho" min="1" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Giá nhập kho sản phẩm</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="txtGiaSPNhapKho" name="txtGiaSPNhapKho" placeholder="Nhập giá nhập kho" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Giá xuất kho sản phẩm</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="txtGiaSPXuatKho" name="txtGiaSPXuatKho" placeholder="Nhập giá xuất kho" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Tình trạng sản phẩm</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-info-circle"></i></label>
+                                                        </div>
+                                                        <select class="form-control select2" id="cboTinhTrangSPPhieuNhapKho" name="cboTinhTrangSPPhieuNhapKho" required> 
+                                                   
+                                                </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -202,56 +188,30 @@
                                 <!-- /.row -->
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button id="btnThemNV" class="btn btn-success"><i class="fas fa-save"></i> Thêm nhân viên</button>
-                                    <button id="btnSuaNV" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa nhân viên</button>
-                                    <button id="btnNhapLaiNV" class="btn btn-primary"><i class="fas fa-circle-notch"></i> Nhập lại</button>
+                                    <button id="btnThemPhieuNhapKho" class="btn btn-success"><i class="fas fa-save"></i> Thêm phiếu nhập kho</button>
+                                    <button id="btnSuaPhieuNhapKho" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa phiếu nhập kho</button>
+                                    <button id="btnNhapLaiPhieuNhapKho" class="btn btn-primary"><i class="fas fa-circle-notch"></i> Nhập lại</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- general form elements -->
-                            <div class="card card-danger">
-                                <div class="card-header">
-                                    <h3 class="card-title">Hình nhân viên</h3>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        asdasdsad
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer pull-right">
-                                    <button id="btnLamMoiHinhNV" class="btn btn-success text-white">
-                                        <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
-                                    </button>
-                                </div>
-                                </form>
                             </div>
                         </div>
                     </div>
                     <hr />
 
                     <!--Thống kê nhân viên-->
-                    <div class="row" id="BangNV">
+                    <div class="row" id="BangPhieuNhapKho">
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title">Danh sách nhân viên cửa hàng</h3>
+                                    <h3 class="card-title">Lịch sử nhập kho</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                                         <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                                     </div>
                                 </div>
                                 <div class="card-body mt-1">
-                                    <table id="tblDanhSachNhanVien" class="table table-bordered table-hover">
+                                    <table id="tblPhieuNhapKho" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>Rendering engine</th>
@@ -262,86 +222,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
                                             <tr>
                                                 <td>Trident</td>
                                                 <td>Internet Explorer 4.0
@@ -372,6 +252,55 @@
                                                 <td>1.8</td>
                                                 <td>A</td>
                                             </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -385,7 +314,7 @@
                                     </table>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button id="btnLamMoiTblNV" class="btn btn-success text-white">
+                                    <button id="btnLamMoitblPhieuNhapKho" class="btn btn-success text-white">
                                         <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
                                     </button>
                                 </div>
@@ -483,7 +412,7 @@
             });
         </script>
         <script src="../../plugins/bootstrap/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
-        <script src="../../plugins/myjs/nhanvienForm.js"></script>
+        <script src="../../plugins/myjs/phieunhapkhoForm.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="../../plugins/angularjs/angular-route.js"></script>
