@@ -1,46 +1,37 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+//Angular functions
+app.controller("khachhangForm", function($scope, $routeParams) {
+    $scope.titlepage = "Khách hàng";
+    $scope.secondtitlepage = "Danh sách khách hàng";
+    angular.element(function() {
+        overlayBangKH();
+        overlayThemKH();
+        activekhachhang1();
+        readypage();
+        validateform();
+    });
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
-//Function Groups
+    $scope.btnThemKhachHang = function() {
+        btnThemKhachHang();
+    };
+    $scope.btnSuaKhachHang = function() {
+        btnSuaKhachHang();
+    };
+    $scope.btnNhapLaiKhachHang = function() {
+        btnNhapLaiKhachHang();
+    };
+    $scope.btnLamMoiTblKhachHang = function() {
+        btnLamMoiTblKhachHang();
+    };
+});
+
+
+function activekhachhang1() {
+    $("#nav-header div").removeClass("nav-link active").addClass('nav-link');
+    $("#nav-header a").removeClass("nav-link active").addClass('nav-link');
+    $("#activekhachhang").addClass("nav-link active");
+    $("#activekhachhang1").addClass("nav-link active ml-2");
+};
+
 function successInsert(text) {
     Swal.fire({
         position: 'top-end',
@@ -120,8 +111,9 @@ function overlayBangKH() {
     }, 300);
 };
 
+
 //Ready function (JQuerry Script Here!!)
-$(document).ready(function() {
+function readypage() {
     //Ready functions
     $("#txtEmailKH").inputmask("email");
 
@@ -237,105 +229,41 @@ $(document).ready(function() {
 
         }
     });
+};
 
-    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
-        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
-    }, "Số điện thoại phải có 10 số và đúng theo quy định");
-
-
-    $('#frmKhachHang').validate({
-        rules: {
-            txtTenKH: {
-                required: true,
-            },
-            txtSdtKH: {
-                required: true,
-                minlength: 10,
-                CheckSdtNhaCC: true
-            },
-            txtEmailKH: {
-                required: true
-            },
-            txtNgayDangKiKH: {
-                required: true,
-            },
-            txtNgayKetThucKH: {
-                required: true
-            },
-            txtDiaChiKH: {
-                required: true
-            }
-        },
-        messages: {
-            txtTenKH: {
-                required: "Nhập tên khách hàng"
-            },
-            txtSdtKH: {
-                required: "Nhập số điện thoại khách hàng",
-                minlength: "Số điện thoại phải 10 số",
-                number: "Số điện thoại chưa đủ số theo quy định"
-            },
-            txtEmailKH: {
-                required: "Nhập Email khách hàng",
-            },
-            txtNgayDangKiKH: {
-                required: "Nhập ngày đăng kí khách hàng",
-            },
-            txtNgayKetThucKH: {
-                required: "Nhập ngày kết thúc khách hàng"
-            },
-            txtDiaChiKH: {
-                required: "Nhập địa chỉ khách hàng"
-            }
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
+$(document).ready(function() {
 
     //dblclick Tables function
     $(document).on("dblclick", "#tblDanhSachKhachHang >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
-
-
-    //btn Function Groups
-    $('#btnThemKhachHang').on('click', function() {
-        if (!$("#frmKhachHang").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'KHÁCH HÀNG';
-            successInsert(text);
-        };
-    });
-    $('#btnSuaKhachHang').on('click', function() {
-        if (!$("#frmKhachHang").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'KHÁCH HÀNG';
-            successEdit(text);
-        };
-    });
-    $('#btnNhapLaiKhachHang').on('click', function() {
-        clearAllKhachHangForm();
-    });
-
-    $('#btnLamMoiTblKhachHang').on('click', function() {
-        resetTables();
-    });
-
-    $(window).on("load", function() {
-        overlayBangKH();
-        overlayThemKH();
-    });
 });
+
+//btn functions
+function btnThemKhachHang() {
+    if (!$("#frmKhachHang").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'KHÁCH HÀNG';
+        successInsert(text);
+    };
+};
+
+function btnSuaKhachHang() {
+    if (!$("#frmKhachHang").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'KHÁCH HÀNG';
+        successEdit(text);
+    };
+};
+
+function btnNhapLaiKhachHang() {
+    clearAllKhachHangForm();
+};
+
+function btnLamMoiTblKhachHang() {
+    resetTables();
+};

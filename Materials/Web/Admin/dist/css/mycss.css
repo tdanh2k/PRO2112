@@ -29,14 +29,19 @@
 #collapse1 .nav-item:hover .nav-link.active,
 #collapse2 .nav-item:hover .nav-link,
 #collapse2 .nav-item:hover .nav-link.active,
+#collapse3 .nav-item:hover .nav-link,
+#collapse3 .nav-item:hover .nav-link.active,
+#collapse4 .nav-item:hover .nav-link,
+#collapse4 .nav-item:hover .nav-link.active,
+#collapse5 .nav-item:hover .nav-link,
+#collapse5 .nav-item:hover .nav-link.active,
 #nav-header .nav-link:hover {
     background: rgb(231, 221, 221);
     color: black;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
 }
 
-#collapse1 .nav-item .nav-link.active,
-#collapse2 .nav-item .nav-link.active {
+.card-collapse.collapse.list-group .nav-item .nav-link.active {
     background-color: rgb(42, 201, 42);
     color: #ffffff;
     margin-left: 10%;

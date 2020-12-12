@@ -7,10 +7,11 @@
     <title>Mama's Fresh Veggie of Admin</title>
     <!-- My Store logo-->
     <link rel="shortcut icon" type="image/x-icon" href="../../dist/img/Untitled-1.png" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-    <section ng-include="'../../pages/content-wrapper.html'"></section>
+<body ng-app="myapp" ng-controller="myCtrl">
     <section class="content">
         <div class="container-fluid">
             <!--Thêm nhân viên-->
@@ -21,7 +22,7 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Thêm nhân viên
+                                Thêm nhân viên {{titlepage}}
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -81,7 +82,7 @@
                                             <label>Chức vụ nhân viên</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="cboChucVuNV"><i class="fas fa-award"></i></label>
+                                                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-award"></i></label>
                                                 </div>
                                                 <select class="form-control select2" id="cboChucVuNV" name="cboChucVuNV" required> 
                                                        
@@ -127,9 +128,9 @@
                         <!-- /.row -->
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button id="btnThemNV" class="btn btn-success" ng-click="btnThemNV();"><i class="fas fa-save"></i> Thêm nhân viên</button>
-                            <button id="btnSuaNV" class="btn btn-danger" ng-click="btnSuaNV();"> <i class="fas fa-edit"></i> Sửa nhân viên</button>
-                            <button id="btnNhapLaiNV" class="btn btn-primary" ng-click="btnNhapLaiNV();"><i class="fas fa-circle-notch"></i> Nhập lại</button>
+                            <button id="btnThemNV" class="btn btn-success"><i class="fas fa-save"></i> Thêm nhân viên</button>
+                            <button id="btnSuaNV" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa nhân viên</button>
+                            <button id="btnNhapLaiNV" class="btn btn-primary" ng-click="test()"><i class="fas fa-circle-notch"></i> Nhập lại</button>
                         </div>
                     </div>
                 </div>
@@ -152,7 +153,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer pull-right">
-                            <button id="btnLamMoiHinhNV" class="btn btn-success text-white" ng-click="btnLamMoiHinhNV();">
+                            <button id="btnLamMoiHinhNV" class="btn btn-success text-white">
                                         <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
                                     </button>
                         </div>
@@ -310,7 +311,7 @@
                             </table>
                         </div>
                         <div class="card-footer text-right">
-                            <button id="btnLamMoiTblNV" class="btn btn-success text-white" ng-click="btnLamMoiTblNV();">
+                            <button id="btnLamMoiTblNV" class="btn btn-success text-white">
                                         <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
                                     </button>
                         </div>
@@ -318,6 +319,91 @@
                 </div>
             </div>
     </section>
+    <!-- Main content End -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-messages.min.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 1.2.1 used here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.js"></script>
+
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="../../plugins/toastr/toastr.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- DataTables -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- Select2 -->
+    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- date-time picker-->
+    <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.vi.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- bs-custom-file-input -->>
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
+    <script src="../../plugins/bootstrap/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="test.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="../../dist/js/demo.js"></script>
+    <script src="../../plugins/loadingoverlay/loadingoverlay.min.js"></script>
+    <script src="../../plugins/angularjs/angular-route.js"></script>
 </body>
 
 </html>

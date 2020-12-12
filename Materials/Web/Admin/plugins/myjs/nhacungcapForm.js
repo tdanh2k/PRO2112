@@ -1,45 +1,35 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+//Angular functions
+app.controller("nhacungcapForm", function($scope, $routeParams) {
+    $scope.titlepage = "Nhà cung cấp";
+    $scope.secondtitlepage = "Danh sách nhà cung cấp";
+    angular.element(function() {
+        overlayThemNhaCC();
+        overlayBangNhaCC();
+        activenhacungcap1();
+        readypage();
+        validateform();
+    });
+    $scope.btnThemNhaCungCap = function() {
+        btnThemNhaCungCap();
+    };
+    $scope.btnSuaNhaCungCap = function() {
+        btnSuaNhaCungCap();
+    };
+    $scope.btnNhapLaiNhaCungCap = function() {
+        btnNhapLaiNhaCungCap();
+    };
+    $scope.btnLamMoiTblNhaCungCap = function() {
+        btnLamMoiTblNhaCungCap();
+    };
+});
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+function activenhacungcap1() {
+    $("#nav-header div").removeClass("nav-link active").addClass('nav-link');
+    $("#nav-header a").removeClass("nav-link active").addClass('nav-link');
+    $("#activenhacungcap").addClass("nav-link active");
+    $("#activenhacungcap1").addClass("nav-link active ml-2");
+};
+
 //Function Groups
 function successInsert(text) {
     Swal.fire({
@@ -120,7 +110,8 @@ function overlayBangNhaCC() {
 };
 
 //Ready function (JQuerry Script Here!!)
-$(document).ready(function() {
+function readypage() {
+    $('body').trigger('click');
     //Ready functions
     $("#txtEmailNhaCC").inputmask("email");
 
@@ -236,105 +227,39 @@ $(document).ready(function() {
 
         }
     });
-
-    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
-        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
-    }, "Số điện thoại phải có 10 số và đúng theo quy định");
-
-
-    $('#frmNhaCungCap').validate({
-        rules: {
-            txtTenNhaCC: {
-                required: true,
-            },
-            txtSdtNhaCC: {
-                required: true,
-                minlength: 10,
-                CheckSdtNhaCC: true
-            },
-            txtEmailNhaCC: {
-                required: true
-            },
-            txtNgayKiHopDongNhaCC: {
-                required: true,
-            },
-            txtNgayKetThucHopDongNhaCC: {
-                required: true
-            },
-            txtDiaChiNhaCC: {
-                required: true
-            }
-        },
-        messages: {
-            txtTenNhaCC: {
-                required: "Nhập tên nhà cung cấp"
-            },
-            txtSdtNhaCC: {
-                required: "Nhập số điện thoại nhà cung cấp",
-                minlength: "Số điện thoại phải 10 số",
-                number: "Số điện thoại chưa đủ số theo quy định"
-            },
-            txtEmailNhaCC: {
-                required: "Nhập Email nhà cung cấp",
-            },
-            txtNgayKiHopDongNhaCC: {
-                required: "Nhập ngày kí hợp đồng nhà cung cấp",
-            },
-            txtNgayKetThucHopDongNhaCC: {
-                required: "Nhập ngày kết thúc hợp đồng nhà cung cấp"
-            },
-            txtDiaChiNhaCC: {
-                required: "Nhập địa chỉ nhà cung cấp"
-            }
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
-
+};
+$(document).ready(function() {
     //dblclick Tables function
     $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
-
-
-    //btn Function Groups
-    $('#btnThemNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÀ CUNG CẤP';
-            successInsert(text);
-        };
-    });
-    $('#btnSuaNhaCungCap').on('click', function() {
-        if (!$("#frmNhaCungCap").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÀ CUNG CẤP';
-            successEdit(text);
-        };
-    });
-    $('#btnNhapLaiNhaCungCap').on('click', function() {
-        clearAllNhaCungCapForm();
-    });
-
-    $('#btnLamMoiTblNhaCungCap').on('click', function() {
-        resetTables();
-    });
-
-    $(window).on("load", function() {
-        overlayThemNhaCC();
-        overlayBangNhaCC();
-    });
 });
+
+// btn functions
+function btnThemNhaCungCap() {
+    if (!$("#frmNhaCungCap").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÀ CUNG CẤP';
+        successInsert(text);
+    };
+};
+
+function btnSuaNhaCungCap() {
+    if (!$("#frmNhaCungCap").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÀ CUNG CẤP';
+        successEdit(text);
+    };
+};
+
+function btnNhapLaiNhaCungCap() {
+    clearAllNhaCungCapForm();
+};
+
+function btnLamMoiTblNhaCungCap() {
+    resetTables();
+};

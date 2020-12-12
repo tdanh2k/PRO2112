@@ -1,45 +1,35 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+//Angular functions
+app.controller("phieunhapkhoForm", function($scope, $routeParams) {
+    $scope.titlepage = "Phiếu nhập kho";
+    $scope.secondtitlepage = "Danh sách phiếu nhập kho";
+    angular.element(function() {
+        overlayBangPhieuNhapKho();
+        overlayThemPhieuNhapKho();
+        activekho1();
+        readypage();
+        validateform();
+    });
+    $scope.btnThemPhieuNhapKho = function() {
+        btnThemPhieuNhapKho();
+    };
+    $scope.btnSuaPhieuNhapKho = function() {
+        btnSuaPhieuNhapKho();
+    };
+    $scope.btnNhapLaiPhieuNhapKho = function() {
+        btnNhapLaiPhieuNhapKho();
+    };
+    $scope.btnLamMoitblPhieuNhapKho = function() {
+        btnLamMoitblPhieuNhapKho();
+    };
+});
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+function activekho1() {
+    $("#nav-header div").removeClass("nav-link active").addClass('nav-link');
+    $("#nav-header a").removeClass("nav-link active").addClass('nav-link');
+    $("#activekho").addClass("nav-link active");
+    $("#activekho1").addClass("nav-link active ml-2");
+};
+
 //Function Groups
 function successInsert(text) {
     Swal.fire({
@@ -181,8 +171,8 @@ function loadDatacboTenSPNhapKho() {
     });
 };
 
-//Ready function (JQuerry Script Here!!)
-$(document).ready(function() {
+//function ready
+function readypage() {
     //Ready functions
 
     //datas select2
@@ -304,110 +294,41 @@ $(document).ready(function() {
 
         }
     });
+};
 
-    $.validator.addMethod("validUsername", function(value, element) {
-        return /^[a-zA-Z0-9_.-]+$/.test(value);
-    }, "Tài khoản không được có khoảng cách");
-
-    $('#frmPhieuNhapKho').validate({
-        rules: {
-            cboLoaiSPNhapKho: {
-                required: true,
-            },
-            cboTenSPNhapKho: {
-                required: true,
-            },
-            txtSoLuongSPNhapKho: {
-                required: true,
-                number: true
-            },
-            txtGiaSPNhapKho: {
-                required: true,
-                number: true
-            },
-            txtGiaSPXuatKho: {
-                required: true,
-                number: true
-            },
-            cboTinhTrangSPPhieuNhapKho: {
-                required: true
-            }
-        },
-        messages: {
-            cboLoaiSPNhapKho: {
-                required: "Chọn loại sản phẩm nhập kho"
-            },
-            cboTenSPNhapKho: {
-                required: "Chọn tên sản phẩm nhập kho",
-            },
-            txtSoLuongSPNhapKho: {
-                required: "Nhập số lượng nhập kho sản phẩm",
-                number: "Chỉ được nhập số"
-            },
-            txtGiaSPNhapKho: {
-                required: "Nhập giá nhập kho sản phẩm",
-                number: "Chỉ được nhập số"
-            },
-            txtGiaSPXuatKho: {
-                required: "Nhập giá xuất kho sản phẩm",
-                number: "Chỉ được nhập số"
-            },
-            cboTinhTrangSPPhieuNhapKho: {
-                required: "Chọn tình trạng của sản phẩm"
-            }
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
-
+//Ready function (JQuerry Script Here!!)
+$(document).ready(function() {
     //dblclick Tables function
     $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
-
-
-    //btn Function Groups
-    $('#btnThemPhieuNhapKho').on('click', function() {
-        if (!$("#frmPhieuNhapKho").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÂN VIÊN';
-            successInsert(text);
-        };
-    });
-    $('#btnSuaPhieuNhapKho').on('click', function() {
-        if (!$("#frmPhieuNhapKho").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÂN VIÊN';
-            successEdit(text);
-        };
-    });
-    $('#btnNhapLaiPhieuNhapKho').on('click', function() {
-        clearAllPhieuNhapKhoForm();
-    });
-
-    $('#btnLamMoiTblNV').on('click', function() {
-        resetTables();
-    });
-
-    $('#btnLamMoiHinhNV').on('click', function() {
-        resetTables();
-    });
-
-    $(window).on("load", function() {
-        overlayThemPhieuNhapKho();
-        overlayBangPhieuNhapKho();
-    });
 });
+
+//btn functions
+function btnThemPhieuNhapKho() {
+    if (!$("#frmPhieuNhapKho").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÂN VIÊN';
+        successInsert(text);
+    };
+};
+
+function btnSuaPhieuNhapKho() {
+    if (!$("#frmPhieuNhapKho").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÂN VIÊN';
+        successEdit(text);
+    };
+};
+
+function btnNhapLaiPhieuNhapKho() {
+    clearAllPhieuNhapKhoForm();
+};
+
+function btnLamMoitblPhieuNhapKho() {
+    resetTables();
+};

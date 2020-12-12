@@ -1,45 +1,11 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+app.controller("nhanvienProfile", function($scope, $routeParams) {
+    $scope.titlepage = "Hồ sơ";
+    $scope.secondtitlepage = "Profile";
+    angular.element(function() {
+        overlaynhanvienProfile();
+    });
+});
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
 //Function Groups
 function successInsert(text) {
     Swal.fire({
@@ -107,7 +73,6 @@ function overlaynhanvienProfile() {
 
 //Ready function (JQuerry Script Here!!)
 $(document).ready(function() {
-    console.log('cac');
     //Ready functions
     $("#txtEmailNhaCC").inputmask("email");
 

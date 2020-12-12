@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mama's Fresh Veggie of Admin</title>
+    <!-- My Store logo-->
+    <link rel="shortcut icon" type="image/x-icon" href="../../dist/img/Untitled-1.png" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
+    <!-- datetime picker-->
+    <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed" ng-app="myapp" ng-controller="myCtrl" ng-click="activenhacungcap();">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        <!-- Navbar Begin -->
+        <div ng-include="'../../pages/navbar.html'"></div>
+        <!-- Navbar End -->
+
+        <!-- Main Sidebar Container Begin -->
+        <nav ng-include="'../../pages/aside.html'"></nav>
+        <!-- Main Sidebar Container End-->
+
+        <!-- Content Wrapper. Contains page content Begin-->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) Begin -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Nhân viên</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                                <li class="breadcrumb-item"><a href="#">Nhà cung cấp</a></li>
+                                <li class="breadcrumb-item active">Danh sách nhà cung cấp</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- Content Header (Page header) End-->
+            <!-- Main content Begin -->
+
+            <!-- Main content Begin -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!--Thêm nhân viên-->
+                    <div class="row" id="ThemNhaCC">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Thêm nhà cung cấp</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <form role="form" id="frmNhaCungCap">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tên nhà cung cấp</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-archive"></i></span>
+                                                        </div>
+                                                        <input type="text" id="txtTenNhaCC" name="txtTenNhaCC" class="form-control" placeholder="Nhập tên của nhà cung cấp" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Số điện thoại nhà cung cấp</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                        </div>
+                                                        <input type="text" id="txtSdtNhaCC" name="txtSdtNhaCC" class="form-control" data-inputmask='"mask": "099 999 9999"' data-mask placeholder="Nhập điện thoại của nhà cung cấp" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Email nhà cung cấp</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                        </div>
+                                                        <input type="text" id="txtEmailNhaCC" name="txtEmailNhaCC" class="form-control" placeholder="Nhập Email của nhà cung cấp" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Ngày kí hợp đồng:</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="txtNgayKiHopDongNhaCC" name="txtNgayKiHopDongNhaCC" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="Nhập ngày kí hợp đồng" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Ngày kết thúc hợp đồng:</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="txtNgayKetThucHopDongNhaCC" name="txtNgayKetThucHopDongNhaCC" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="Nhập ngày kết thúc hợp đồng" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Địa chỉ nhà cung cấp</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" id="txtDiaChiNhaCC" name="txtDiaChiNhaCC" class="form-control" placeholder="nhập địa của nhà cung cấp" required>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ghi chú thêm</label>
+                                                    <div class="input-group">
+                                                        <textarea class="form-control" id="txtGhiChuNhaCC" rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.row -->
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" id="btnThemNhaCungCap" class="btn btn-success"><i class="fas fa-save"></i> Thêm nhà cung cấp</button>
+                                    <button type="submit" id="btnSuaNhaCungCap" class="btn btn-danger"> <i class="fas fa-edit"></i> Sửa nhà cung cấp</button>
+                                    <button type="submit" id="btnNhapLaiNhaCungCap" class="btn btn-primary"><i class="fas fa-circle-notch"></i> Nhập lại</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <!--Thống kê nhân viên-->
+                    <div class="row" id="BangNhaCC">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">Danh sách nhà cung cấp</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body mt-1">
+                                    <table id="tblDanhSachNhaCungCap" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet Explorer 4.0
+                                                </td>
+                                                <td>Win 95+</td>
+                                                <td> 4</td>
+                                                <td>X</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet Explorer 5.0
+                                                </td>
+                                                <td>Win 95+</td>
+                                                <td>5</td>
+                                                <td>C</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 1.5</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 2.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                                <td>1.8</td>
+                                                <td>A</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button id="btnLamMoiTblNhaCungCap" class="btn btn-success text-white">
+                                        <span class="spinner-border text-default spinner-border-sm"></span><br /> Làm mới
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- Main content End -->
+
+            <!-- Main content End -->
+            </div>
+            <!-- Content Wrapper. Contains page content End -->
+
+            <div ng-include="'../../pages/footer.html'"></div>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+        </div>
+        <!-- ./wrapper -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-messages.min.js"></script>
+
+        <!-- Angular Material Javascript now available via Google CDN; version 1.2.1 used here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.js"></script>
+
+
+        <!-- jQuery -->
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- SweetAlert2 -->
+        <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- Toastr -->
+        <script src="../../plugins/toastr/toastr.min.js"></script>
+        <!-- ChartJS -->
+        <script src="../../plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="../../plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="../../plugins/moment/moment.min.js"></script>
+        <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../../dist/js/adminlte.min.js"></script>
+        <!-- DataTables -->
+        <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <!-- Select2 -->
+        <script src="../../plugins/select2/js/select2.full.min.js"></script>
+        <!-- Bootstrap4 Duallistbox -->
+        <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+        <!-- InputMask -->
+        <script src="../../plugins/moment/moment.min.js"></script>
+        <script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+        <!-- date-time picker-->
+        <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../../plugins/bootstrap/js/bootstrap-datetimepicker.vi.min.js"></script>
+        <!-- date-range-picker -->
+        <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- bootstrap color picker -->
+        <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Bootstrap Switch -->
+        <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+        <!-- bs-custom-file-input -->>
+        <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+        <!-- jquery-validation -->
+        <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+        <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                bsCustomFileInput.init();
+            });
+        </script>
+        <script src="../../plugins/bootstrap/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+        <script src="../../plugins/myjs/nhacungcapForm.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="../../plugins/angularjs/angular-route.js"></script>
+        <script src="../../dist/js/demo.js"></script>
+        <script src="../../plugins/loadingoverlay/loadingoverlay.min.js"></script>
+
+</body>
+
+</html>

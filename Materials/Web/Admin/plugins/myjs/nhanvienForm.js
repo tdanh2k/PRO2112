@@ -1,45 +1,39 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+//Angular functions
+app.controller("nhanvienForm", function($scope, $routeParams) {
+    $scope.titlepage = "Nhân viên";
+    $scope.secondtitlepage = "Danh sách nhân viên";
+    angular.element(function() {
+        overlayBangNV();
+        overlayThemNV();
+        activenhanvien1();
+        readypage();
+        validateform();
+        loadDatacboChucVuNV();
+    });
+    $scope.btnThemNV = function() {
+        btnThemNV();
+    };
+    $scope.btnSuaNV = function() {
+        btnSuaNV();
+    };
+    $scope.btnNhapLaiNV = function() {
+        btnNhapLaiNV();
+    };
+    $scope.btnLamMoiHinhNV = function() {
+        btnLamMoiHinhNV();
+    };
+    $scope.btnLamMoiTblNV = function() {
+        btnLamMoiTblNV();
+    };
+});
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+function activenhanvien1() {
+    $("#nav-header div").removeClass("nav-link active").addClass('nav-link');
+    $("#nav-header a").removeClass("nav-link active").addClass('nav-link');
+    $("#activenhanvien").addClass("nav-link active");
+    $("#activenhanvien1").addClass("nav-link active ml-2");
+};
+
 //Function Groups
 function successInsert(text) {
     Swal.fire({
@@ -168,9 +162,8 @@ function loadDatacboChucVuNV() {
     });
 };
 
-//Ready function (JQuerry Script Here!!)
-$(document).ready(function() {
-    //Ready functions
+//functions ready
+function readypage() {
     //Initialize Select2 Elements
     loadDatacboChucVuNV();
     $('#cboChucVuNV').val(null).trigger('change');
@@ -284,100 +277,45 @@ $(document).ready(function() {
 
         }
     });
+};
 
-    $.validator.addMethod("validUsername", function(value, element) {
-        return /^[a-zA-Z0-9_.-]+$/.test(value);
-    }, "Tài khoản không được có khoảng cách");
-
-    $('#frmNhanVien').validate({
-        rules: {
-            txtTenNV: {
-                required: true,
-            },
-            txtTaiKhoanNV: {
-                required: true,
-                validUsername: true
-            },
-            txtNgaySinhNV: {
-                required: true
-            },
-            txtMatKhauNV: {
-                required: true,
-                minlength: 5
-            },
-            cboChucVuNV: {
-                required: true
-            }
-        },
-        messages: {
-            txtTenNV: {
-                required: "Nhập tên nhân viên"
-            },
-            txtTaiKhoanNV: {
-                required: "Nhập tài khoản nhân viên",
-            },
-            txtNgaySinhNV: {
-                required: "Nhập ngày sinh nhân viên",
-            },
-            txtMatKhauNV: {
-                required: "Nhập mật khẩu nhân viên",
-                minlength: "Mật khẩu phải ít nhất 5 kí tự"
-            },
-            chkSuThatNV: "Làm ơn tích vào điều kiện",
-            cboChucVuNV: "Chọn chức vụ nhân viên"
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
-
+//Ready function (JQuerry Script Here!!)
+$(document).ready(function() {
     //dblclick Tables function
     $(document).on("dblclick", "#tblDanhSachNhanVien >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
-
-
-    //btn Function Groups
-    $('#btnThemNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÂN VIÊN';
-            successInsert(text);
-        };
-    });
-    $('#btnSuaNV').on('click', function() {
-        if (!$("#frmNhanVien").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'NHÂN VIÊN';
-            successEdit(text);
-        };
-    });
-    $('#btnNhapLaiNV').on('click', function() {
-        clearAllNhanVienForm();
-    });
-
-    $('#btnLamMoiTblNV').on('click', function() {
-        resetTables();
-    });
-
-    $('#btnLamMoiHinhNV').on('click', function() {
-        resetTables();
-    });
-
-    $(window).on("load", function() {
-        overlayThemNV();
-        overlayBangNV();
-    });
 });
+
+//btn functions
+function btnThemNV() {
+    if (!$("#frmNhanVien").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÂN VIÊN';
+        successInsert(text);
+    };
+};
+
+function btnSuaNV() {
+    if (!$("#frmNhanVien").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'NHÂN VIÊN';
+        successEdit(text);
+    };
+};
+
+function btnNhapLaiNV() {
+    clearAllNhanVienForm();
+};
+
+function btnLamMoiHinhNV() {
+    resetTables();
+};
+
+function btnLamMoiTblNV() {
+    resetTables();
+};

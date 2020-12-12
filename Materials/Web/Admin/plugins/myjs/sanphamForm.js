@@ -1,45 +1,35 @@
-var app = angular.module("myapp", ["ngRoute"]);
-// app.controller("myctrl", function($scope, $http, $interval) {
-//     $scope.clicktitle = function(titlemain, titlesecondary) {
-//         $scope.titlemain = titlemain;
-//         $scope.titlesecondary = titlesecondary;
-//     }
-// });
-// // app.config(function($routeProvider) {
-// //     $routeProvider
-// //         .when("/home", {
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// //         .when("/dsnhanvien", {
-// //             templateUrl: "pages/mypages/nhanvienForm.html",
-// //             controller: "nhanvienController"
-// //         })
-// //         .when("/blogdetails", {
-// //             templateUrl: "blog-details.html"
-// //         })
-// //         .when("/contact", {
-// //             templateUrl: "contact.html"
-// //         })
-// //         .when("/shop", {
-// //             templateUrl: "shop-grid.html"
-// //         })
-// //         .otherwise({
-// //             templateUrl: "pages/mypages/profile.html",
-// //             controller: "homeController"
-// //         })
-// // });
-// app.controller("homeController", function($scope, $routeParams) {
-//     $scope.titlemain = "Hồ sơ";
-//     $scope.titlesecondary = "Hồ sơ cá nhân";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+//Angular functions
+app.controller("sanphamForm", function($scope, $routeParams) {
+    $scope.titlepage = "Sản phẩm";
+    $scope.secondtitlepage = "Danh sách sản phẩm";
+    angular.element(function() {
+        overlayBangSP();
+        overlayThemSP();
+        activesanpham1();
+        readypage();
+        validateform();
+    });
+    $scope.btnThemSanPham = function() {
+        btnThemSanPham();
+    };
+    $scope.btnSuaSanPham = function() {
+        btnSuaSanPham();
+    };
+    $scope.btnNhapLaiSanPham = function() {
+        btnNhapLaiSanPham();
+    };
+    $scope.btnLamMoiTblSanPham = function() {
+        btnLamMoiTblSanPham();
+    };
+});
 
-// app.controller("nhanvienController", function($scope, $routeParams, $route) {
-//     $scope.titlemain = "Nhân viên";
-//     $scope.titlesecondary = "Danh sách nhân viên";
-//     $scope.clicktitle($scope.titlemain, $scope.titlesecondary);
-// });
+function activesanpham1() {
+    $("#nav-header div").removeClass("nav-link active").addClass('nav-link');
+    $("#nav-header a").removeClass("nav-link active").addClass('nav-link');
+    $("#activesanpham").addClass("nav-link active");
+    $("#activesanpham1").addClass("nav-link active ml-2");
+};
+
 //Function Groups
 function successInsert(text) {
     Swal.fire({
@@ -160,12 +150,8 @@ function loadDatacboNhaCungCapSP() {
         data: dataLoaiSP
     });
 };
-
-//Ready function (JQuerry Script Here!!)
-$(document).ready(function() {
-    //Icons Selects
-
-
+//function ready
+function readypage() {
     //Ready functions
     $("#txtEmailNhaCC").inputmask("email");
 
@@ -284,96 +270,41 @@ $(document).ready(function() {
         submitHandler: function() {
 
         }
-    });
-
-    $.validator.addMethod("CheckSdtNhaCC", function(value, element) {
-        return /^[00-90-9 0-90-90-9 0-90-90-90-9]+$/.test(value);
-    }, "Số điện thoại phải có 10 số và đúng theo quy định");
-
-
-    $('#frmSanPham').validate({
-        rules: {
-            txtTenSP: {
-                required: true,
-            },
-            cboLoaiSP: {
-                required: true
-            },
-            cboNhaCungCapSP: {
-                required: true,
-            },
-            txtQRCodeSP: {
-                required: true
-            },
-            txtBarCodeSP: {
-                required: true
-            }
-        },
-        messages: {
-            txtTenSP: {
-                required: "Nhập tên sản phẩm"
-            },
-            cboLoaiSP: {
-                required: "Chọn loại sản phẩm",
-            },
-            cboNhaCungCapSP: {
-                required: "Chọn nhà cung cấp của sản phẩm",
-            },
-            txtQRCodeSP: {
-                required: "Chưa có mã QR Code của sản phẩm"
-            },
-            txtBarCodeSP: {
-                required: "Chưa có mã Bar Code của sản phẩm"
-            }
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
-
-    //dblclick Tables function
+    });;
+}
+//Ready function (JQuerry Script Here!!)
+$(document).ready(function() {
+    //Icons Selects
     $(document).on("dblclick", "#tblDanhSachSanPham >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
-
-
-    //btn Function Groups
-    $('#btnThemSanPham').on('click', function() {
-        if (!$("#frmSanPham").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'SẢN PHẨM';
-            successInsert(text);
-        };
-    });
-    $('#btnSuaSanPham').on('click', function() {
-        if (!$("#frmSanPham").valid()) {
-            errorForm();
-            return;
-        } else {
-            var text = 'SẢN PHẨM';
-            successEdit(text);
-        };
-    });
-    $('#btnNhapLaiSanPham').on('click', function() {
-        clearAllSanPhamForm();
-    });
-
-    $('#btnLamMoiTblSanPham').on('click', function() {
-        resetTables();
-    });
-
-    $(window).on("load", function() {
-        overlayThemSP();
-        overlayBangSP();
-    });
 });
+
+//btn functions
+function btnThemSanPham() {
+    if (!$("#frmSanPham").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'SẢN PHẨM';
+        successInsert(text);
+    };
+};
+
+function btnSuaSanPham() {
+    if (!$("#frmSanPham").valid()) {
+        errorForm();
+        return;
+    } else {
+        var text = 'SẢN PHẨM';
+        successEdit(text);
+    };
+};
+
+function btnNhapLaiSanPham() {
+    clearAllSanPhamForm();
+};
+
+function btnLamMoiTblSanPham() {
+    resetTables();
+};
