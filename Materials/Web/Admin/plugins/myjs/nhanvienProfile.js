@@ -6,39 +6,6 @@ app.controller("nhanvienProfile", function($scope, $routeParams) {
     });
 });
 
-//Function Groups
-function successInsert(text) {
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'THÊM ' + text + ' THÀNH CÔNG',
-        showConfirmButton: false,
-        timer: 2000,
-    });
-};
-
-function errorForm() {
-    toastr["warning"]("VUI LÒNG NHẬP ĐÚNG VÀ ĐẦY ĐỦ DỮ LIỆU", "DỮ LIỆU NHẬP TRỐNG");
-}
-
-function successEdit(text) {
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'SỬA ' + text + ' THÀNH CÔNG ',
-        showConfirmButton: false,
-        timer: 2000,
-    });
-}
-
-function clearAllMessage() {
-    toastr["success"]("", "NHẬP LẠI!");
-};
-
-function resetTables() {
-    toastr["success"]("", "LÀM MỚI!");
-}
-
 //function ClearAlls
 function clearAllNhaCungCapForm() {
     clearAllMessage();
@@ -251,7 +218,7 @@ $(document).ready(function() {
     });
 
     //dblclick Tables function
-    $(document).on("dblclick", "#tblDanhSachNhaCungCap >tbody > tr", function() {
+    $(document).on("dblclick", "#tblDanhSachNhaCungCapa >tbody > tr", function() {
         console.log('click vào tables rồi');
     });
 
