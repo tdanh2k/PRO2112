@@ -52,36 +52,31 @@ function clearAllNhanVienForm() {
     $("#chkSuThatNV").prop("checked", false);
 };
 
-function overlayThemNV() {
+function overlayThemNV(status) {
     $("#ThemNV").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#ThemNV").LoadingOverlay("hide");
+        if (status == true) {
             $("#ThemNV").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemNV").LoadingOverlay("progress", count);
-    }, 300);
+        };
+    }, 3000);
 };
 
-function overlayBangNV() {
+function overlayBangNV(status) {
     $("#BangNV").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#BangNV").LoadingOverlay("hide");
+        if (status == true) {
             $("#BangNV").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangNV").LoadingOverlay("progress", count);
-    }, 300);
+        } else {
+            var text = 'NHÂN VIÊN';
+            errorLoadData(text);
+        };
+    }, 3000);
 };
 
 //functions select2
@@ -152,11 +147,10 @@ function getDataNhanVien() {
         contentType: 'application/json',
         success: function(data) {
 
-            overlayBangNV();
+            overlayBangNV(true);
         },
         error: function() {
-            var text = 'NHÂN VIÊN';
-            errorLoadData(text);
+            overlayBangNV(false);
         }
     });
 };
@@ -178,8 +172,8 @@ function btnThemNV() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangNV();
-                overlayThemNV();
+                overlayBangNV(true);
+                overlayThemNV(true);
                 clearAllNhanVienForm();
                 var text = 'NHÂN VIÊN';
                 successInsert(text);
@@ -208,8 +202,8 @@ function btnSuaNV() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangNV();
-                overlayThemNV();
+                overlayBangNV(true);
+                overlayThemNV(true);
                 clearAllNhanVienForm();
                 var text = 'NHÂN VIÊN';
                 successInsert(text);
@@ -231,5 +225,6 @@ function btnLamMoiHinhNV() {
 };
 
 function btnLamMoiTblNV() {
+    getDataNhanVien();
     resetTables();
 };

@@ -50,36 +50,31 @@ function clearAllKhachHangForm() {
 };
 
 //loadingoverlay functions
-function overlayThemKH() {
+function overlayThemKH(status) {
     $("#ThemKH").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#ThemKH").LoadingOverlay("hide");
+        if (status == true) {
             $("#ThemKH").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemKH").LoadingOverlay("progress", count);
-    }, 300);
+        };
+    }, 3000);
 };
 
-function overlayBangKH() {
+function overlayBangKH(status) {
     $("#BangKH").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#BangKH").LoadingOverlay("hide");
+        if (status == true) {
             $("#BangKH").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangKH").LoadingOverlay("progress", count);
-    }, 300);
+        } else {
+            var text = 'KHÁCH HÀNG';
+            errorLoadData(text);
+        };
+    }, 3000);
 };
 
 //function get data
@@ -93,11 +88,10 @@ function getDataKhachHang() {
         contentType: 'application/json',
         success: function(data) {
 
-            overlayBangKH();
+            overlayBangKH(true);
         },
         error: function() {
-            var text = 'KHÁCH HÀNG';
-            errorLoadData(text);
+            overlayBangKH(false);
         }
     });
 };
@@ -119,8 +113,8 @@ function btnThemKhachHang() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangKH();
-                overlayThemKH();
+                overlayBangKH(true);
+                overlayThemKH(true);
                 clearAllKhachHangForm();
                 var text = 'KHÁCH HÀNG';
                 successInsert(text);
@@ -149,8 +143,8 @@ function btnSuaKhachHang() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangKH();
-                overlayThemKH();
+                overlayBangKH(true);
+                overlayThemKH(true);
                 clearAllKhachHangForm();
                 var text = 'KHÁCH HÀNG';
                 successInsert(text);
@@ -168,5 +162,6 @@ function btnNhapLaiKhachHang() {
 };
 
 function btnLamMoiTblKhachHang() {
+    getDataKhachHang();
     resetTables();
 };

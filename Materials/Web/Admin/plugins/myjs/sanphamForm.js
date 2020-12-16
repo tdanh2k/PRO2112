@@ -51,32 +51,27 @@ function overlayThemSP() {
     $("#ThemSP").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#ThemSP").LoadingOverlay("hide");
+        if (status == true) {
             $("#ThemSP").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemSP").LoadingOverlay("progress", count);
-    }, 300);
+        };
+    }, 3000);
 };
 
 function overlayBangSP() {
     $("#BangSP").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#BangSP").LoadingOverlay("hide");
+        if (status == true) {
             $("#BangSP").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangSP").LoadingOverlay("progress", count);
-    }, 300);
+        } else {
+            var text = 'SẢN PHẨM';
+            errorLoadData(text);
+        };
+    }, 3000);
 };
 
 //functions select2
@@ -141,12 +136,10 @@ function getDataSanPham() {
         contentType: 'application/json',
         success: function(data) {
 
-            overlayBangSP();
+            overlayBangSP(true);
         },
         error: function() {
-
-            var text = 'SẢN PHẨM';
-            errorLoadData(text);
+            overlayBangSP(false);
         }
     });
 };
@@ -168,8 +161,8 @@ function btnThemSanPham() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangSP();
-                overlayThemSP();
+                overlayBangSP(true);
+                overlayThemSP(true);
                 clearAllSanPhamForm();
                 var text = 'SẢN PHẨM';
                 successInsert(text);
@@ -198,8 +191,8 @@ function btnSuaSanPham() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangSP();
-                overlayThemSP();
+                overlayBangSP(true);
+                overlayThemSP(true);
                 clearAllSanPhamForm();
                 var text = 'SẢN PHẨM';
                 successInsert(text);
@@ -217,5 +210,6 @@ function btnNhapLaiSanPham() {
 };
 
 function btnLamMoiTblSanPham() {
+    getDataSanPham();
     resetTables();
 };

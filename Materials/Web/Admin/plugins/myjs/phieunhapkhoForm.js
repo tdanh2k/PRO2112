@@ -84,32 +84,27 @@ function overlayThemPhieuNhapKho() {
     $("#ThemPhieuNhapKho").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#ThemPhieuNhapKho").LoadingOverlay("hide");
+        if (status == true) {
             $("#ThemPhieuNhapKho").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemPhieuNhapKho").LoadingOverlay("progress", count);
-    }, 300);
+        };
+    }, 3000);
 };
 
 function overlayBangPhieuNhapKho() {
     $("#BangPhieuNhapKho").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#BangPhieuNhapKho").LoadingOverlay("hide");
+        if (status == true) {
             $("#BangPhieuNhapKho").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangPhieuNhapKho").LoadingOverlay("progress", count);
-    }, 300);
+        } else {
+            var text = 'PHIẾU NHẬP KHO';
+            errorLoadData(text);
+        };
+    }, 3000);
 };
 
 //functions select2
@@ -197,12 +192,10 @@ function getDataPhieuNhapKho() {
         contentType: 'application/json',
         success: function(data) {
 
-            overlayBangPhieuNhapKho();
+            overlayBangPhieuNhapKho(true);
         },
         error: function() {
-
-            var text = 'PHIẾU NHẬP KHO';
-            errorLoadData(text);
+            overlayBangPhieuNhapKho(false);
         }
     });
 };
@@ -224,8 +217,8 @@ function btnThemPhieuNhapKho() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangPhieuNhapKho();
-                overlayThemPhieuNhapKho();
+                overlayBangPhieuNhapKho(true);
+                overlayThemPhieuNhapKho(true);
                 clearAllPhieuNhapKhoForm();
                 var text = 'PHIẾU NHẬP KHO';
                 successInsert(text);
@@ -254,8 +247,8 @@ function btnSuaPhieuNhapKho() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangPhieuNhapKho();
-                overlayThemPhieuNhapKho();
+                overlayBangPhieuNhapKho(true);
+                overlayThemPhieuNhapKho(true);
                 clearAllPhieuNhapKhoForm();
                 var text = 'PHIẾU NHẬP KHO';
                 successInsert(text);
@@ -273,5 +266,6 @@ function btnNhapLaiPhieuNhapKho() {
 };
 
 function btnLamMoitblPhieuNhapKho() {
+    getDataPhieuNhapKho();
     resetTables();
 };

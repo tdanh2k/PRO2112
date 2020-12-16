@@ -47,36 +47,31 @@ function clearAllNhaCungCapForm() {
     $('#txtGhiChuNhaCC').val('');
 };
 
-function overlayThemNhaCC() {
+function overlayThemNhaCC(status) {
     $("#ThemNhaCC").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#ThemNhaCC").LoadingOverlay("hide");
+        if (status == true) {
             $("#ThemNhaCC").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#ThemNhaCC").LoadingOverlay("progress", count);
-    }, 300);
+        };
+    }, 3000);
 };
 
-function overlayBangNhaCC() {
+function overlayBangNhaCC(status) {
     $("#BangNhaCC").LoadingOverlay("show", {
 
     });
-    var count = 0;
-    var interval = setInterval(function() {
-        if (count >= 100) {
-            clearInterval(interval);
+    setTimeout(function() {
+        $("#BangNhaCC").LoadingOverlay("hide");
+        if (status == true) {
             $("#BangNhaCC").LoadingOverlay("hide");
-            return;
-        }
-        count += 10;
-        $("#BangNhaCC").LoadingOverlay("progress", count);
-    }, 300);
+        } else {
+            var text = 'NHÀ CUNG CẤP';
+            errorLoadData(text);
+        };
+    }, 3000);
 };
 
 
@@ -91,11 +86,10 @@ function getDataNhaCungCap() {
         contentType: 'application/json',
         success: function(data) {
 
-            overlayBangNV();
+            overlayBangNhaCC(true);
         },
         error: function() {
-            var text = 'NHÀ CUNG CẤP';
-            errorLoadData(text);
+            overlayBangNhaCC(false);
         }
     });
 };
@@ -117,8 +111,8 @@ function btnThemNhaCungCap() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangNhaCC();
-                overlayThemNhaCC();
+                overlayBangNhaCC(true);
+                overlayThemNhaCC(true);
                 clearAllNhaCungCapForm();
                 var text = 'NHÀ CUNG CẤP';
                 successInsert(text);
@@ -147,8 +141,8 @@ function btnSuaNhaCungCap() {
             success: function(data) {
                 //Thêm request vào đây
 
-                overlayBangNhaCC();
-                overlayThemNhaCC();
+                overlayBangNhaCC(true);
+                overlayThemNhaCC(true);
                 clearAllNhaCungCapForm();
                 var text = 'NHÀ CUNG CẤP';
                 successInsert(text);
@@ -166,5 +160,6 @@ function btnNhapLaiNhaCungCap() {
 };
 
 function btnLamMoiTblNhaCungCap() {
+    getDataNhaCungCap();
     resetTables();
 };
